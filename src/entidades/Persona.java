@@ -1,7 +1,10 @@
 package entidades;
 
+import java.util.HashMap;
+
 public class Persona {
 
+	private int idPersona;
 	private String nombre;
 	private String apellido;
 	private int dni;

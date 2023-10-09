@@ -3,6 +3,7 @@ package entidades;
 public class Producto {
 
 	private int idProducto;
+	private String descripcion;
 	private String nombre;
 	private int precio;
 	private int stock;
@@ -46,5 +47,15 @@ public class Producto {
 		this.stock = stock;
 	}
 	
-	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	@Override
+	public String toString() { // NO SE USA, SOLO PARA PROBAR POR CONSOLA
+		return "idProducto=" + idProducto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", stock=" + stock
+				+ ", cat=" + cat + ", brand=" + brand + "\n";
+	}
 }
