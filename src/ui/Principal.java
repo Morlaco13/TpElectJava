@@ -3,7 +3,9 @@ package ui;
 public class Principal {
 	
 	public static void main(String[] args) {
-		Menu m = new Menu();
-		m.start();
+		PruebaPersona pp = new PruebaPersona();
+		pp.start();
+		//Menu m = new Menu();
+		//m.start();
 	}
 }

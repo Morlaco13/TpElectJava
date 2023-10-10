@@ -13,6 +13,12 @@ public class Persona {
 	private String email;
 	private boolean esAdmin;
 	
+	public int getIdPersona() {
+		return idPersona;
+	}
+	public void setIdPersona(int idPersona) {
+		this.idPersona = idPersona;
+	}
 	public boolean isEsAdmin() {
 		return esAdmin;
 	}
@@ -55,5 +61,10 @@ public class Persona {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	@Override
+	public String toString() { // NO SE USA, SOLO PARA PROBAR POR CONSOLA
+		return "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido +
+				", dni=" + dni + ", direccion=" + direccion + ", email=" + email
+				+ ", esAdmin=" + esAdmin +"\n";
+	}
 }

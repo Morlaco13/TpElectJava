@@ -15,6 +15,22 @@ public class Conexion {
 	private String bd = "tpjava";
 
 	private Connection conn;
+	private static Conexion instanciaConn;
+
+	private Conexion(){
+		try {
+			Class.forName(controladorBD);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();		
+		}
+	}
+	
+	public static Conexion crearInstancia(){
+		if (instanciaConn == null) {
+			instanciaConn = new Conexion();
+		}
+		return instanciaConn;
+	}
 
 	public Connection getConn(){
 		try {
