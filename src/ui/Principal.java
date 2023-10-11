@@ -3,8 +3,12 @@ package ui;
 public class Principal {
 	
 	public static void main(String[] args) {
-		PruebaPersona pp = new PruebaPersona();
-		pp.start();
+		PruebaCategoria c = new PruebaCategoria();
+		c.start();
+		//PruebaMarca m = new PruebaMarca();
+		//m.start();
+		//PruebaPersona p = new PruebaPersona();
+		//p.start();
 		//Menu m = new Menu();
 		//m.start();
 	}
