@@ -12,34 +12,12 @@ import entidades.Marca;
 
 public class DatosMarca {
 	
-	private String controladorBD = "com.mysql.cj.jdbc.Driver";
-	private String anfitrion = "localhost";
-	private String puerto = "3306";
-	private String usuario = "root";
-	private String contrasena = "47953";
-	private String tipoBD = "mysql";
-	private String bd = "tpjava";
-	
-	private Connection conn;
-	
-	public DatosMarca() {
-		try {
-			Class.forName(controladorBD);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}		
-	}
-	
 	public LinkedList<Marca> listar(){
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd, usuario, contrasena);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null; //CAMBIAR POR THROW
-		}
+		Connection conn = Conexion.getConnection();
+		
 		try {
 		LinkedList<Marca> marcas = new LinkedList<>();
 		stmt = conn.createStatement();
@@ -63,7 +41,7 @@ public class DatosMarca {
 			try {
 				if (rs != null) rs.close();
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -74,12 +52,7 @@ public class DatosMarca {
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd, usuario, contrasena);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null; //CAMBIAR POR THROW
-		}
+		Connection conn = Conexion.getConnection();
 		
 		try {
 		Marca mar = null;
@@ -103,7 +76,7 @@ public class DatosMarca {
 			try {
 				if (rs != null) rs.close();
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -114,11 +87,7 @@ public class DatosMarca {
 		PreparedStatement stmt = null;
 		ResultSet keyRS = null;
 	  
-		try {
-			conn =	DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd,usuario, contrasena);
-			} catch (SQLException e) {
-				e.printStackTrace(); //CAMBIAR POR THROW }
-		}
+		Connection conn = Conexion.getConnection();
 		
 		try {
 			stmt = conn.prepareStatement(
@@ -139,7 +108,7 @@ public class DatosMarca {
 			try {
 				if (keyRS != null) keyRS.close();
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -149,14 +118,10 @@ public class DatosMarca {
 	public void baja(Marca m) {
 		PreparedStatement stmt = null;
 	  
-		try {
-			conn =	DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd,usuario, contrasena);
-			} catch (SQLException e) {
-				e.printStackTrace(); //CAMBIAR POR THROW }
-		}
+		Connection conn = Conexion.getConnection();
 		
 		try {
-			stmt = conn.prepareStatement("select * from marca where id = ?");
+			stmt = conn.prepareStatement("DELETE from marca where id = ?");
 			
 			stmt.setString(1, m.getNombre());
 			
@@ -167,7 +132,7 @@ public class DatosMarca {
 		} finally {
 			try {
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -177,11 +142,7 @@ public class DatosMarca {
 	public void update(Marca m) {
 		PreparedStatement stmt = null;
 		  
-		try {
-			conn =	DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd,usuario, contrasena);
-			} catch (SQLException e) {
-				e.printStackTrace(); //CAMBIAR POR THROW }
-		}
+		Connection conn = Conexion.getConnection();
 		
 		try {
 			stmt = conn.prepareStatement("update marca set nombre = ?, where id = ?");
@@ -196,7 +157,7 @@ public class DatosMarca {
 		} finally {
 			try {
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -7,15 +7,14 @@ import java.sql.SQLException;
 public class Conexion {
 
 	private String controladorBD = "com.mysql.cj.jdbc.Driver";
-	private String anfitrion = "localhost";
-	private String puerto = "3306";
-	private String usuario = "root";
-	private String contrasena = "47953";
-	private String tipoBD = "mysql";
-	private String bd = "tpjava";
+	private static String anfitrion = "localhost";
+	private static String puerto = "3306";
+	private static String usuario = "root";
+	private static String contrasena = "47953";
+	private static String tipoBD = "mysql";
+	private static String bd = "tpjava";
 
-	private Connection conn;
-	private static Conexion instanciaConn;
+	private static Connection conn;
 
 	private Conexion(){
 		try {
@@ -24,27 +23,21 @@ public class Conexion {
 			e.printStackTrace();		
 		}
 	}
-	
-	public static Conexion crearInstancia(){
-		if (instanciaConn == null) {
-			instanciaConn = new Conexion();
-		}
-		return instanciaConn;
+
+	@SuppressWarnings("finally")
+	public static Connection getConnection() {
+	    try {
+	        if (conn == null || conn.isClosed()) {
+	            conn = DriverManager.getConnection("jdbc:mysql://" + anfitrion + ":" + puerto + "/" + bd, usuario, contrasena);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        return conn;
+	    }
 	}
 
-	public Connection getConn(){
-		try {
-			if(conn != null && conn.isClosed()) {
-				conn = DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd, usuario, contrasena);
-			} 
-		}catch (SQLException e) {
-				e.printStackTrace();
-		}
-		
-		return conn;
-	}
-
-	public void releaseConn(){
+	public static void releaseConnection(){
 		try {
 			if (conn != null && !conn.isClosed()) {
 				conn.close();

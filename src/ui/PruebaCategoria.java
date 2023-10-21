@@ -1,7 +1,6 @@
 package ui;
 
 import java.util.Scanner;
-
 import entidades.Categoria;
 import logic.ControladorCategoria;
 
@@ -18,7 +17,7 @@ public class PruebaCategoria {
 		
 		do {
 			rta = PruebaCategoria();
-	
+			
 		switch(rta) {
 			case "listar":
 				listar();				
@@ -40,7 +39,9 @@ public class PruebaCategoria {
 				update();
 				break;
 				
-			case "exit":				
+			case "exit":
+				Menu m = new Menu();
+				m.start();
 				break;
 		
 			default:

@@ -12,34 +12,12 @@ import entidades.Persona;
 
 public class DatosPersona {
 	
-	private String controladorBD = "com.mysql.cj.jdbc.Driver";
-	private String anfitrion = "localhost";
-	private String puerto = "3306";
-	private String usuario = "root";
-	private String contrasena = "47953";
-	private String tipoBD = "mysql";
-	private String bd = "tpjava";
-	
-	private Connection conn;
-	
-	public DatosPersona() {
-		try {
-			Class.forName(controladorBD);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}		
-	}
-	
 	public LinkedList<Persona> listar(){
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd, usuario, contrasena);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null; //CAMBIAR POR THROW
-		}
+		Connection conn = Conexion.getConnection();
+		
 		try {
 		LinkedList<Persona> pers = new LinkedList<>();
 		stmt = conn.createStatement();
@@ -69,7 +47,7 @@ public class DatosPersona {
 			try {
 				if (rs != null) rs.close();
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -80,12 +58,7 @@ public class DatosPersona {
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd, usuario, contrasena);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null; //CAMBIAR POR THROW
-		}
+		Connection conn = Conexion.getConnection();
 		
 		try {
 		Persona per = null;
@@ -115,7 +88,7 @@ public class DatosPersona {
 			try {
 				if (rs != null) rs.close();
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -126,11 +99,7 @@ public class DatosPersona {
 		PreparedStatement stmt = null;
 		ResultSet keyRS = null;
 	  
-		try {
-			conn =	DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd,usuario, contrasena);
-			} catch (SQLException e) {
-				e.printStackTrace(); //CAMBIAR POR THROW }
-		}
+		Connection conn = Conexion.getConnection();
 		
 		try {
 			stmt = conn.prepareStatement(
@@ -159,7 +128,7 @@ public class DatosPersona {
 			try {
 				if (keyRS != null) keyRS.close();
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -169,11 +138,7 @@ public class DatosPersona {
 	public void baja(Persona p) {
 		PreparedStatement stmt = null;
 	  
-		try {
-			conn =	DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd,usuario, contrasena);
-			} catch (SQLException e) {
-				e.printStackTrace(); //CAMBIAR POR THROW }
-		}
+		Connection conn = Conexion.getConnection();
 		
 		try {
 			stmt = conn.prepareStatement("select * from persona where id = ?");
@@ -193,7 +158,7 @@ public class DatosPersona {
 		} finally {
 			try {
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -202,11 +167,7 @@ public class DatosPersona {
 	public void update(Persona p) {
 		PreparedStatement stmt = null;
 		  
-		try {
-			conn =	DriverManager.getConnection("jdbc:mysql://"+anfitrion+":"+puerto+"/"+bd,usuario, contrasena);
-			} catch (SQLException e) {
-				e.printStackTrace(); //CAMBIAR POR THROW }
-		}
+		Connection conn = Conexion.getConnection();
 		
 		try {
 			stmt = conn.prepareStatement("update persona set nombre = ?, apellido = ?,"
@@ -229,7 +190,7 @@ public class DatosPersona {
 		} finally {
 			try {
 				if (stmt != null) stmt.close();
-				if (conn != null) conn.close();
+				if (conn != null) Conexion.releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -40,7 +40,9 @@ public class PruebaMarca {
 				update();
 				break;
 				
-			case "exit":				
+			case "exit":
+				Menu m = new Menu();
+				m.start();
 				break;
 		
 			default:

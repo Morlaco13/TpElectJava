@@ -29,4 +29,12 @@ public class ControladorProducto {
 	public void update(Producto p) {
 		datos.update(p);
 	}
+	
+	public void listadoPorPrecioA() {
+		datos.listadoPorPrecioA();
+	}
+	
+	public void listadoPorPrecioD() {
+		datos.listadoPorPrecioD();
+	}
 }
