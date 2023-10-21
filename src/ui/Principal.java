@@ -6,5 +6,4 @@ public class Principal {
 		Menu m = new Menu();
 		m.start();
 	}
-		
 }
