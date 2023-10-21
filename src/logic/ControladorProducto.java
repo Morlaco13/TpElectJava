@@ -30,12 +30,14 @@ public class ControladorProducto {
 		datos.update(p);
 	}
 	
-	public void listadoPorPrecioA() {
-		datos.listadoPorPrecioA();
+	public LinkedList<Producto> listadoPorPrecioA() {
+		datos = new DatosProductos();
+		return datos.listadoPorPrecioA();
 	}
 	
-	public void listadoPorPrecioD() {
-		datos.listadoPorPrecioD();
+	public LinkedList<Producto> listadoPorPrecioD() {
+		datos = new DatosProductos();
+		return datos.listadoPorPrecioD();
 	}
 	
 }

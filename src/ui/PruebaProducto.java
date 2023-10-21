@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 import entidades.Producto;
 import logic.ControladorProducto;
@@ -137,14 +138,14 @@ public class PruebaProducto {
 	
 	private void listadoPorPrecioA() {
 		System.out.println("Listado de productos precio Ascendente");
-		for(Producto p: cp.listar()) {
+		for(Producto p: cp.listadoPorPrecioA()) {
 			System.out.println(p);
 		}
 	}
 	
 	private void listadoPorPrecioD() {
 		System.out.println("Listado de productos precio Descendente");
-		for(Producto p: cp.listar()) {
+		for(Producto p: cp.listadoPorPrecioD()) {
 			System.out.println(p);
 		}
 	}
