@@ -1,6 +1,8 @@
 package ui;
 
 import java.util.LinkedList;
+import entidades.Categoria;
+import entidades.Marca;
 import java.util.Scanner;
 import entidades.Producto;
 import logic.ControladorProducto;
@@ -20,8 +22,7 @@ public class PruebaProducto {
 	
 		switch(rta) {
 			case "listar":
-				listar();
-				
+				listar();	
 				break;
 		
 			case "buscar":
@@ -87,6 +88,12 @@ public class PruebaProducto {
 	
 	private void alta() { //FALTA LA VALIDACION
 		Producto prod = new Producto();
+		Marca m = new Marca();
+		Categoria c = new Categoria();
+		
+		prod.setBrand(m);
+		prod.setCat(c);
+		
 		System.out.println("Ingrese nombre: \n");
 		prod.setNombre(scan.nextLine());
 		System.out.println("Ingrese descripcion: \n");
@@ -95,6 +102,10 @@ public class PruebaProducto {
 		prod.setPrecio(Integer.parseInt(scan.nextLine()));
 		System.out.println("Ingrese stock: \n");
 		prod.setStock(Integer.parseInt(scan.nextLine()));
+		System.out.println("Ingrese idMarca: \n");
+		prod.getBrand().setIdMarca(Integer.parseInt(scan.nextLine()));
+		System.out.println("Ingrese idCategoria: \n");
+		prod.getCat().setIdCategoria(Integer.parseInt(scan.nextLine()));
 
 		cp.alta(prod);
 		

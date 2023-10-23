@@ -56,6 +56,6 @@ public class Producto {
 	@Override
 	public String toString() { // NO SE USA, SOLO PARA PROBAR POR CONSOLA
 		return "idProducto=" + idProducto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", stock=" + stock
-				+ ", cat=" + cat + ", brand=" + brand + "\n";
+				+ " " + cat + " " + brand + "\n";
 	}
 }

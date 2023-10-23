@@ -3,7 +3,7 @@ package entidades;
 public class Categoria {
 
 	private int idCategoria;
-	private String nombre;
+	private String nombreCat;
 
 	public int getIdCategoria() {
 		return idCategoria;
@@ -14,15 +14,15 @@ public class Categoria {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return nombreCat;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombreCat = nombre;
 	}
 
 	@Override
 	public String toString() { // NO SE USA, SOLO PARA PROBAR POR CONSOLA
-		return "idCategoria=" + idCategoria + " nombre=" + nombre +"\n";
+		return "nombreCat=" + nombreCat +"\n";
 	}
 }

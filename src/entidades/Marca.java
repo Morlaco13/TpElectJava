@@ -3,7 +3,7 @@ package entidades;
 public class Marca {
 
 	private int idMarca;
-	private String nombre;
+	private String nombreMarca;
 
 	public int getIdMarca() {
 		return idMarca;
@@ -14,14 +14,14 @@ public class Marca {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return nombreMarca;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombreMarca = nombre;
 	}
 	@Override
 	public String toString() { // NO SE USA, SOLO PARA PROBAR POR CONSOLA
-		return "idMarca=" + idMarca + " nombre=" + nombre +"\n";
+		return "nombreMarca=" + nombreMarca +"\n";
 	}
 }

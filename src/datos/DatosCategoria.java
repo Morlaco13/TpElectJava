@@ -26,8 +26,8 @@ public class DatosCategoria {
 		while(rs != null && rs.next()) {
 			Categoria c = new Categoria();
 			
-			c.setIdCategoria(rs.getInt("id"));
-			c.setNombre(rs.getString("nombre"));
+			c.setIdCategoria(rs.getInt("idCategoria"));
+			c.setNombre(rs.getString("nombreCat"));
 			
 			cats.add(c);
 		}
@@ -56,14 +56,14 @@ public class DatosCategoria {
 		
 		try {
 		Categoria cat = null;
-		stmt = conn.prepareStatement("select * from categoria where id = ?");
+		stmt = conn.prepareStatement("select * from categoria where idCategoria = ?");
 		stmt.setInt(1, c.getIdCategoria()); // Asigno al 1er ? el valor (no arranca en 0)
 		rs = stmt.executeQuery();
 		
 		if (rs != null && rs.next()) {
 			cat = new Categoria(); //Creo per aca porque sino encuentra debe devolver null
-			cat.setIdCategoria(rs.getInt("id"));
-			cat.setNombre(rs.getString("nombre"));
+			cat.setIdCategoria(rs.getInt("idCategoria"));
+			cat.setNombre(rs.getString("nombreCat"));
 			
 			}
 		
@@ -91,7 +91,7 @@ public class DatosCategoria {
 		
 		try {
 			stmt = conn.prepareStatement(
-					"insert into categoria(nombre) values(?)", Statement.RETURN_GENERATED_KEYS);
+					"insert into categoria(nombreCat) values(?)", Statement.RETURN_GENERATED_KEYS);
 			//roundtriptime ida y vuelta hasta la bd
 			stmt.setString(1, c.getNombre());
 		
@@ -121,7 +121,7 @@ public class DatosCategoria {
 		Connection conn = Conexion.getConnection();
 		
 		try {
-			stmt = conn.prepareStatement("DELETE from categoria where id = ?");
+			stmt = conn.prepareStatement("DELETE from categoria where idCategoria = ?");
 			
 			stmt.setString(1, c.getNombre());
 			
@@ -145,7 +145,7 @@ public class DatosCategoria {
 		Connection conn = Conexion.getConnection();
 		
 		try {
-			stmt = conn.prepareStatement("update categoria set nombre = ? where id = ?");
+			stmt = conn.prepareStatement("update categoria set nombreCat = ? where idCategoria = ?");
 			
 			stmt.setString(1, c.getNombre());
 			stmt.setInt(2, c.getIdCategoria());
