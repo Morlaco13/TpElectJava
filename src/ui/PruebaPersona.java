@@ -2,6 +2,8 @@ package ui;
 
 import java.util.Scanner;
 
+import entidades.Administrador;
+import entidades.Cliente;
 import entidades.Persona;
 import logic.ControladorPersona;
 
@@ -20,6 +22,10 @@ public class PruebaPersona {
 			rta = PruebaPersona();
 	
 		switch(rta) {
+			case "user":
+				getByUser();
+				break;
+				
 			case "listar":
 				listar();				
 				break;
@@ -55,11 +61,26 @@ public class PruebaPersona {
 		scan.close();
 	}
 
-	private String PruebaPersona() {
-		System.out.println("Ingrese: listar/buscar/alta/baja/update/exit");
+	private String PruebaPersona() {	
+		System.out.println("Ingrese: user/listar/buscar/alta/baja/update/exit");
 		return scan.nextLine();
 	}
 
+	private void getByUser() {
+		Persona p = new Persona();
+		
+		System.out.println("Ingrese Mail: ");
+		p.setEmail(scan.nextLine());
+		System.out.println("Ingrese password: ");
+		p.setPassword(scan.nextLine());
+		
+		if(cp.getByUser(p) != null) {
+			System.out.println(cp.getByUser(p));
+			} else {
+				System.out.println("El email o la contraseña ingresada son incorrectos.");
+			}
+	}
+	
 	private void listar() {
 		for(Persona p: cp.listar()) {
 			System.out.println(p);

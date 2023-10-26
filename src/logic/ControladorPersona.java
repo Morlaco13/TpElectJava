@@ -8,6 +8,11 @@ public class ControladorPersona {
 
 	DatosPersona datos = new DatosPersona();
 	
+	public Persona getByUser(Persona p) {
+		datos = new DatosPersona();
+		return datos.getByUser(p);
+	}
+	
 	public LinkedList<Persona> listar(){
 		datos = new DatosPersona();
 		return datos.listar();

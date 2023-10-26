@@ -12,7 +12,14 @@ public class Persona {
 	private String direccion;
 	private String email;
 	private boolean esAdmin;
+	private String password;
 	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public int getIdPersona() {
 		return idPersona;
 	}

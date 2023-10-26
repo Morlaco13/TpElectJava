@@ -12,6 +12,49 @@ import entidades.Persona;
 
 public class DatosPersona {
 	
+	public Persona getByUser(Persona per) {
+		Persona p = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Connection conn = Conexion.getConnection();
+		
+		try {
+			stmt = conn.prepareStatement("select id, nombre, apellido, dni, telefono, "
+					+ "direccion, email, esAdmin from persona where "
+					+ "email=? and password=?");
+			
+			stmt.setString(1, per.getEmail());
+			stmt.setString(2, per.getPassword());
+			rs = stmt.executeQuery();
+			
+			if (rs!=null && rs.next()) {
+				p = new Persona();
+				p.setIdPersona(rs.getInt("id"));
+				p.setNombre(rs.getString("nombre"));
+				p.setApellido(rs.getString("apellido"));
+				p.setDni(rs.getInt("dni"));
+				p.setTelefono(rs.getInt("telefono"));
+				p.setDireccion(rs.getString("direccion"));
+				p.setEmail(rs.getString("email"));
+				p.setEsAdmin(rs.getBoolean("esAdmin"));
+			}
+			
+			return p;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) stmt.close();
+				if (conn != null) Conexion.releaseConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public LinkedList<Persona> listar(){
 		Statement stmt = null;
 		ResultSet rs = null;
