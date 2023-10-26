@@ -26,6 +26,10 @@ public class PruebaPersona {
 				getByUser();
 				break;
 				
+			case "doc":
+				getByDni();
+				break;
+				
 			case "listar":
 				listar();				
 				break;
@@ -62,7 +66,7 @@ public class PruebaPersona {
 	}
 
 	private String PruebaPersona() {	
-		System.out.println("Ingrese: user/listar/buscar/alta/baja/update/exit");
+		System.out.println("Ingrese: user/doc/listar/buscar/alta/baja/update/exit");
 		return scan.nextLine();
 	}
 
@@ -79,6 +83,19 @@ public class PruebaPersona {
 			} else {
 				System.out.println("El email o la contraseña ingresada son incorrectos.");
 			}
+	}
+	
+	private void getByDni() {
+		Persona p = new Persona();
+		
+		System.out.println("Ingrese DNI: ");
+		p.setDni(Integer.parseInt(scan.nextLine()));
+		
+		if(cp.getByDni(p) != null) {
+			System.out.println(cp.getByDni(p));
+		} else {
+			System.out.println("Usuario inexistente o no encontrado");
+		}
 	}
 	
 	private void listar() {

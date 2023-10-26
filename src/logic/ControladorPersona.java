@@ -13,6 +13,11 @@ public class ControladorPersona {
 		return datos.getByUser(p);
 	}
 	
+	public Persona getByDni(Persona p) {
+		datos = new DatosPersona();
+		return datos.getByDni(p);
+	}
+	
 	public LinkedList<Persona> listar(){
 		datos = new DatosPersona();
 		return datos.listar();
