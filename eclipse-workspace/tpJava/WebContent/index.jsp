@@ -8,6 +8,11 @@
 	</head>
 	<body>
 		
+		<h1> COMPRA </h1>
+		<form action="NuevaCompra" method="GET">
+		<button type="submit" > Comprar productos</button>
+		</form>
+		
 		<h1> PRODUCTOS </h1>
 		<h1> </h1>
 		<form action="BuscarTodosProducto" method="GET">

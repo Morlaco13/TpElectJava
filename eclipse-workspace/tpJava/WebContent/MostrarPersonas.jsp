@@ -15,17 +15,19 @@
 			List<Persona> personas = (List<Persona>) request.getSession().getAttribute("pers");
 			for(Persona p : personas){
 		%>
-				<p>id: <%=p.getIdPersona() %></p>
-				<p>nombre: <%=p.getNombre() %></p>
-				<p>apellido: <%=p.getApellido() %></p>
-				<p>dni: <%=p.getDni() %></p>
-				<p>telefono: <%=p.getTelefono() %></p>
-				<p>direccion: <%=p.getDireccion() %></p>
-				<p>email: <%=p.getEmail() %></p>
-				<p>esAdmin: <%=p.isEsAdmin() %></p>
-				<p>password: <%=p.getPassword() %></p>
+			<p>
+            	<strong>ID:</strong> <%=p.getIdPersona() %> |
+            	<strong>Nombre:</strong> <%=p.getNombre() %> |
+            	<strong>Apellido:</strong> <%=p.getApellido() %> |
+            	<strong>dni:</strong> <%=p.getDni() %> |
+            	<strong>Telefono:</strong> <%=p.getTelefono() %> |
+            	<strong>direccion:</strong> <%=p.getDireccion() %> |
+            	<strong>email:</strong> <%=p.getEmail() %> |
+            	<strong>esAdmin:</strong> <%=p.isEsAdmin() %> |
+            	<strong>password:</strong> <%=p.getPassword() %> |
+        	</p>
 
-				<p>---------------------------------</p>
+			<p>---------------------------------</p>
 		<% } %>
 
 	</body>

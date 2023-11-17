@@ -15,13 +15,15 @@
 			List<Producto> listaProductos = (List<Producto>) request.getSession().getAttribute("prods");
 			for(Producto p : listaProductos){
 		%>
-				<p>id: <%=p.getIdProducto() %></p>
-				<p>descripcion: <%=p.getDescripcion() %></p>
-				<p>nombre: <%=p.getNombre() %></p>
-				<p>precio: <%=p.getPrecio() %></p>
-				<p>stock: <%=p.getStock() %></p>
-				<p>categoria: <%=p.getCat() %></p>
-				<p>marca: <%=p.getBrand() %></p>
+				<p>
+            	<strong>ID:</strong> <%=p.getIdProducto() %> |
+            	<strong>Descripción:</strong> <%=p.getDescripcion() %> |
+            	<strong>Nombre:</strong> <%=p.getNombre() %> |
+            	<strong>Precio:</strong> <%=p.getPrecio() %> |
+            	<strong>Stock:</strong> <%=p.getStock() %> |
+            	<strong>Categoría:</strong> <%=p.getCat() %> |
+            	<strong>Marca:</strong> <%=p.getBrand() %>
+        		</p>
 		
 				<p>---------------------------------</p>
 		<% } %>
