@@ -2,6 +2,9 @@ package logic;
 
 import java.util.LinkedList;
 
+import datos.DatosPersona;
+import entidades.Persona;
+
 public class Login {
 	private DatosPersona dp;
 	
@@ -15,10 +18,10 @@ public class Login {
 	}
 	
 	public LinkedList<Persona> getAll(){
-		return dp.getAll();
+		return dp.listar();
 	}
 	
 	public Persona getByDocumento(Persona per) {
-		return dp.getByDocumento(per);	
+		return dp.getByDni(per);	
 	}
 }

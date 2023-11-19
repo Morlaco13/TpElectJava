@@ -9,6 +9,7 @@ import java.util.LinkedList;
 
 import entidades.Categoria;
 import entidades.Marca;
+import entidades.Persona;
 import entidades.Producto;
 
 public class DatosProductos {
@@ -322,5 +323,60 @@ public class DatosProductos {
 		}	 
 	}
 }
+
+	public LinkedList<Producto> getByCategoria(Categoria c) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			LinkedList<Producto> prods = new LinkedList<>();			
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("SELECT p.id , p.descripcion ,"
+			+ " p.nombre , p.precio , p.stock , p.idMarca , m.nombreMarca AS nombreMarca ,"
+			+ " p.idCategoria , c.nombreCat AS nombreCat from producto p "
+			+ " JOIN marca m ON p.idMarca = m.idMarca "
+			+ " JOIN categoria c ON p.idCategoria = c.idCategoria "
+			+ " where p.idCategoria = ?");			
+			
+			stmt.setInt(1, c.getIdCategoria());
+			rs = stmt.executeQuery();
+			
+			while (rs != null && rs.next()) {
+				Producto p = new Producto();
+				Marca m = new Marca();
+				Categoria cat = new Categoria();
+
+				p.setIdProducto(rs.getInt("id"));
+				p.setDescripcion(rs.getString("descripcion"));
+				p.setNombre(rs.getString("nombre"));
+				p.setPrecio(rs.getInt("precio"));
+				p.setStock(rs.getInt("stock"));
+				
+				m.setIdMarca(rs.getInt("idMarca"));
+				m.setNombre(rs.getString("nombreMarca"));
+
+				cat.setIdCategoria(rs.getInt("idCategoria"));
+				cat.setNombre(rs.getString("nombreCat"));
+				
+				p.setBrand(m);
+				p.setCat(cat);
+				
+				prods.add(p);
+			}
+
+			return prods;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) stmt.close();
+				Conexion.getInstancia().releaseConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 }

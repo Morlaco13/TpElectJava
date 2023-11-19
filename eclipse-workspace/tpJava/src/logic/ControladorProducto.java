@@ -2,6 +2,7 @@ package logic;
 
 import java.util.LinkedList;
 import datos.DatosProductos;
+import entidades.Categoria;
 import entidades.Producto;
 
 public class ControladorProducto {
@@ -16,6 +17,11 @@ public class ControladorProducto {
 	public Producto buscar(Producto p) {
 		datos = new DatosProductos();
 		return datos.buscar(p);
+	}
+	
+	public LinkedList<Producto> getByCategoria(Categoria c) {
+		datos = new DatosProductos();
+		return datos.getByCategoria(c);
 	}
 	
 	public void alta(Producto p){

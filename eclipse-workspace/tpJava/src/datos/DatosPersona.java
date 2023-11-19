@@ -114,6 +114,7 @@ public class DatosPersona {
 			p.setDireccion(rs.getString("direccion"));
 			p.setEmail(rs.getString("email"));
 			p.setEsAdmin(rs.getBoolean("esAdmin"));
+			p.setPassword(rs.getString("password"));
 			
 			pers.add(p);
 		}

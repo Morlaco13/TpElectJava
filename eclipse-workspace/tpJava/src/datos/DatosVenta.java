@@ -17,45 +17,30 @@ public class DatosVenta {
 		ArrayList<Venta> ventas = new ArrayList<Venta>();
 
 		try {
-			stmt = Conexion.getConnection().prepareStatement("SENTENCIA SQL");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("SENTENCIA SQL");
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				Venta venta = new Venta();
 
-				venta.setId(resultado.getInt("cc.id"));
-				venta.setFecha(resultado.getString("cc.fecha"));
-				venta.setTotal(resultado.getDouble("cc.total"));
-				venta.setId_cliente(resultado.getInt("c.id"));
-				venta.setNombre_cliente(resultado.getString("c.nombre"));
-				venta.setApellido_cliente(resultado.getString("c.apellido"));
+				venta.setId(rs.getInt("id"));
+				venta.
+				venta.
+				venta.
+				venta.
+				venta.
 
 				ventas.add(venta);
 			}
 		}
-
-		// Estos 2 "Catch" son para el "Try" principal (donde está la consulta a la base
-		// de datos)
-		catch (SQLException excepcion) {
-			throw new SQLException("Algo salió mal intentando buscar en la base de datos", excepcion);
-		}
-
-		catch (Excepcion excepcion) {
-			throw new Excepcion(excepcion, "Algo salió mal intentando buscar las ventas");
-
-		}
-		// Este "Try-Catch" es para cerrar la conexión y sus resultados.
 		try {
-			if (resultado != null)
-				resultado.close();
-			if (sentenciaSQL != null)
-				sentenciaSQL.close();
-			Conexion.crearInstancia().cerrarConexion();
+			if (rs != null)
+				rs.close();
+			if (stmt != null)
+				stmt.close();
+				Conexion.getInstancia().releaseConnection();
 		}
 
-		catch (SQLException excepcion) {
-			throw new SQLException("Error intentando cerrar la conexion a la base de datos", excepcion);
-		}
 		return ventas;
 	}
 

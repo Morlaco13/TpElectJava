@@ -11,14 +11,6 @@ public class Producto {
 	private Marca brand;
 	
 	//private String imagen; Para agregar imagenes?
-	//habia creado el constructor pero no sabia como "arreglar el metodo" en DatosProductos
-	/*
-	 * public Producto(int idProducto, String descripcion, String nombre, int
-	 * precio, int stock, Categoria cat, Marca brand) { this.idProducto =
-	 * idProducto; this.descripcion = descripcion; this.nombre = nombre; this.precio
-	 * = precio; this.stock = stock; this.cat = cat; this.brand = brand;
-	 * //this.imagen = imagen; }
-	 */
 	
 	public Categoria getCat() {
 		return cat;

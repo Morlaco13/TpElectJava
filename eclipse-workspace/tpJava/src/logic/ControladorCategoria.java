@@ -18,6 +18,11 @@ public class ControladorCategoria {
 		return datos.buscar(c);
 	}
 	
+	public Categoria getById(Categoria c) {
+		datos = new DatosCategoria();
+		return datos.getById(c);
+	}
+	
 	public void alta(Categoria c){
 		datos.alta(c);
 	}

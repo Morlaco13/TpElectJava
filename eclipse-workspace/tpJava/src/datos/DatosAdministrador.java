@@ -14,12 +14,10 @@ public class DatosAdministrador {
 	public LinkedList<Persona> listar(){
 		Statement stmt = null;
 		ResultSet rs = null;
-		
-		Connection conn = Conexion.getConnection();
-		
+				
 		try {
 		LinkedList<Persona> pers = new LinkedList<>();
-		stmt = conn.createStatement();
+		stmt = Conexion.getInstancia().getConnection().createStatement();
 		rs = stmt.executeQuery("select * from persona");
 		
 		while(rs != null && rs.next()) {
@@ -45,8 +43,9 @@ public class DatosAdministrador {
 		} finally {
 			try {
 				if (rs != null) rs.close();
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -56,12 +55,10 @@ public class DatosAdministrador {
 	public Persona buscar(Persona p) { //Recibo una persona que tenga solo el id
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
-		
-		Connection conn = Conexion.getConnection();
-		
+				
 		try {
 		Persona per = null;
-		stmt = conn.prepareStatement("select * from persona where id = ?");
+		stmt = Conexion.getInstancia().getConnection().prepareStatement("select * from persona where id = ?");
 		stmt.setInt(1, p.getIdPersona()); // Asigno al 1er ? el valor (no arranca en 0)
 		rs = stmt.executeQuery();
 		
@@ -86,8 +83,9 @@ public class DatosAdministrador {
 		}finally {
 			try {
 				if (rs != null) rs.close();
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -97,11 +95,9 @@ public class DatosAdministrador {
 	public void alta(Persona p) {
 		PreparedStatement stmt = null;
 		ResultSet keyRS = null;
-	  
-		Connection conn = Conexion.getConnection();
-		
+	  		
 		try {
-			stmt = conn.prepareStatement(
+			stmt = Conexion.getInstancia().getConnection().prepareStatement(
 					"insert into persona(nombre, apellido, dni, telefono, direccion, email, esAdmin) "
 					+ "values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			// Si el orden es diferente en la bd, no importa 
@@ -126,8 +122,9 @@ public class DatosAdministrador {
 		} finally {
 			try {
 				if (keyRS != null) keyRS.close();
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -136,11 +133,9 @@ public class DatosAdministrador {
 	
 	public void baja(Persona p) {
 		PreparedStatement stmt = null;
-	  
-		Connection conn = Conexion.getConnection();
-		
+	  		
 		try {
-			stmt = conn.prepareStatement("select * from persona where id = ?");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("select * from persona where id = ?");
 			
 			stmt.setString(2, p.getNombre());
 			stmt.setString(3, p.getApellido());
@@ -156,8 +151,9 @@ public class DatosAdministrador {
 			e.printStackTrace();				
 		} finally {
 			try {
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -166,11 +162,9 @@ public class DatosAdministrador {
 	
 	public void update(Persona p) {
 		PreparedStatement stmt = null;
-		  
-		Connection conn = Conexion.getConnection();
-		
+		  		
 		try {
-			stmt = conn.prepareStatement("update persona set nombre = ?, apellido = ?,"
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("update persona set nombre = ?, apellido = ?,"
 					+ "dni = ?" + ", telefono = ?, direccion = ?, email = ?,"
 					+ "esAdmin = ? where id = ?");
 			
@@ -189,8 +183,9 @@ public class DatosAdministrador {
 			e.printStackTrace();				
 		} finally {
 			try {
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null) 
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

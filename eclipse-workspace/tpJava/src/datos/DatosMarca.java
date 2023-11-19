@@ -15,12 +15,10 @@ public class DatosMarca {
 	public LinkedList<Marca> listar(){
 		Statement stmt = null;
 		ResultSet rs = null;
-		
-		Connection conn = Conexion.getConnection();
-		
+				
 		try {
 		LinkedList<Marca> marcas = new LinkedList<>();
-		stmt = conn.createStatement();
+		stmt = Conexion.getInstancia().getConnection().createStatement();
 		rs = stmt.executeQuery("select * from marca");
 		
 		while(rs != null && rs.next()) {
@@ -40,8 +38,9 @@ public class DatosMarca {
 		} finally {
 			try {
 				if (rs != null) rs.close();
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null) 
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -52,11 +51,9 @@ public class DatosMarca {
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		
-		Connection conn = Conexion.getConnection();
-		
 		try {
 		Marca mar = null;
-		stmt = conn.prepareStatement("select * from marca where idMarca = ?");
+		stmt = Conexion.getInstancia().getConnection().prepareStatement("select * from marca where idMarca = ?");
 		stmt.setInt(1, m.getIdMarca()); // Asigno al 1er ? el valor (no arranca en 0)
 		rs = stmt.executeQuery();
 		
@@ -75,8 +72,9 @@ public class DatosMarca {
 		}finally {
 			try {
 				if (rs != null) rs.close();
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -86,11 +84,9 @@ public class DatosMarca {
 	public void alta(Marca m) {
 		PreparedStatement stmt = null;
 		ResultSet keyRS = null;
-	  
-		Connection conn = Conexion.getConnection();
-		
+	  		
 		try {
-			stmt = conn.prepareStatement(
+			stmt = Conexion.getInstancia().getConnection().prepareStatement(
 					"insert into marca(nombreMarca) values(?)", Statement.RETURN_GENERATED_KEYS);
 			//roundtriptime ida y vuelta hasta la bd
 			stmt.setString(1, m.getNombre());
@@ -107,8 +103,9 @@ public class DatosMarca {
 		} finally {
 			try {
 				if (keyRS != null) keyRS.close();
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -117,11 +114,9 @@ public class DatosMarca {
 	
 	public void baja(Marca m) {
 		PreparedStatement stmt = null;
-	  
-		Connection conn = Conexion.getConnection();
-		
+	  		
 		try {
-			stmt = conn.prepareStatement("DELETE from marca where idMarca = ?");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("DELETE from marca where idMarca = ?");
 			
 			stmt.setString(1, m.getNombre());
 			
@@ -131,8 +126,9 @@ public class DatosMarca {
 			e.printStackTrace();				
 		} finally {
 			try {
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -141,11 +137,9 @@ public class DatosMarca {
 	
 	public void update(Marca m) {
 		PreparedStatement stmt = null;
-		  
-		Connection conn = Conexion.getConnection();
-		
+		  		
 		try {
-			stmt = conn.prepareStatement("update marca set nombreMarca = ?, where idMarca = ?");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("update marca set nombreMarca = ?, where idMarca = ?");
 			
 			stmt.setString(1, m.getNombre());
 			stmt.setInt(2, m.getIdMarca());
@@ -156,8 +150,9 @@ public class DatosMarca {
 			e.printStackTrace();			
 		} finally {
 			try {
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null) 
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

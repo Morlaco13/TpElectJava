@@ -9,18 +9,18 @@ import java.sql.Statement;
 import java.util.LinkedList;
 
 import entidades.Categoria;
+import entidades.Marca;
+import entidades.Producto;
 
 public class DatosCategoria {
 	
 	public LinkedList<Categoria> listar(){
 		Statement stmt = null;
 		ResultSet rs = null;
-		
-		Connection conn = Conexion.getConnection();
-		
+				
 		try {
 		LinkedList<Categoria> cats = new LinkedList<>();
-		stmt = conn.createStatement();
+		stmt = Conexion.getInstancia().getConnection().createStatement();
 		rs = stmt.executeQuery("select * from categoria");
 		
 		while(rs != null && rs.next()) {
@@ -40,8 +40,9 @@ public class DatosCategoria {
 		} finally {
 			try {
 				if (rs != null) rs.close();
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null) 
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -51,12 +52,10 @@ public class DatosCategoria {
 	public Categoria buscar(Categoria c) { //Recibo una persona que tenga solo el id
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
-		
-		Connection conn = Conexion.getConnection();
-		
+				
 		try {
 		Categoria cat = null;
-		stmt = conn.prepareStatement("select * from categoria where idCategoria = ?");
+		stmt = Conexion.getInstancia().getConnection().prepareStatement("select * from categoria where idCategoria = ?");
 		stmt.setInt(1, c.getIdCategoria()); // Asigno al 1er ? el valor (no arranca en 0)
 		rs = stmt.executeQuery();
 		
@@ -75,8 +74,9 @@ public class DatosCategoria {
 		}finally {
 			try {
 				if (rs != null) rs.close();
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null) 
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -86,11 +86,9 @@ public class DatosCategoria {
 	public void alta(Categoria c) {
 		PreparedStatement stmt = null;
 		ResultSet keyRS = null;
-	  
-		Connection conn = Conexion.getConnection();
-		
+	  		
 		try {
-			stmt = conn.prepareStatement(
+			stmt = Conexion.getInstancia().getConnection().prepareStatement(
 					"insert into categoria(nombreCat) values(?)", Statement.RETURN_GENERATED_KEYS);
 			//roundtriptime ida y vuelta hasta la bd
 			stmt.setString(1, c.getNombre());
@@ -107,8 +105,9 @@ public class DatosCategoria {
 		} finally {
 			try {
 				if (keyRS != null) keyRS.close();
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null) 
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -117,11 +116,9 @@ public class DatosCategoria {
 	
 	public void baja(Categoria c) {
 		PreparedStatement stmt = null;
-	  
-		Connection conn = Conexion.getConnection();
-		
+	  		
 		try {
-			stmt = conn.prepareStatement("DELETE from categoria where idCategoria = ?");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("DELETE from categoria where idCategoria = ?");
 			
 			stmt.setString(1, c.getNombre());
 			
@@ -131,8 +128,9 @@ public class DatosCategoria {
 			e.printStackTrace();				
 		} finally {
 			try {
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null) 
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -141,11 +139,9 @@ public class DatosCategoria {
 	
 	public void update(Categoria c) {
 		PreparedStatement stmt = null;
-		  
-		Connection conn = Conexion.getConnection();
-		
+		  		
 		try {
-			stmt = conn.prepareStatement("update categoria set nombreCat = ? where idCategoria = ?");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("update categoria set nombreCat = ? where idCategoria = ?");
 			
 			stmt.setString(1, c.getNombre());
 			stmt.setInt(2, c.getIdCategoria());
@@ -156,11 +152,48 @@ public class DatosCategoria {
 			e.printStackTrace();			
 		} finally {
 			try {
-				if (stmt != null) stmt.close();
-				if (conn != null) Conexion.releaseConnection();
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 	}
+
+	public Categoria getById(Categoria c) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+
+		try {
+			Categoria cat = new Categoria();
+
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("select * from categoria c where c.idCategoria=?");
+
+			stmt.setInt(1, c.getIdCategoria()); // Asigno al 1er ? el valor (no arranca en 0)
+			rs = stmt.executeQuery();
+
+			if (rs != null && rs.next()) { //Consulta rs.next() no deberia estar?
+				cat = new Categoria(); // Creo aca porque sino encuentra debe devolver null
+				cat.setIdCategoria(rs.getInt("idCategoria"));
+				cat.setNombre(rs.getString("nombreCat"));
+			}
+
+			return cat;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null)
+					stmt.close();
+				Conexion.getInstancia().releaseConnection();
+			} catch (SQLException e){
+				e.printStackTrace();
+			}	 
+		}
+	}
+
 }

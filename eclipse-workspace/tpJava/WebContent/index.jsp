@@ -17,7 +17,6 @@
 		<h1> </h1>
 		<form action="BuscarTodosProducto" method="GET">
 		<button type="submit" > Mostrar productos</button>
-
 		</form>
 
 		<form action="FormularioBusquedaPorIdServlet" method="POST">
