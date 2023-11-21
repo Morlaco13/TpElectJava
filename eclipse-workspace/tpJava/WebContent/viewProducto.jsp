@@ -28,9 +28,10 @@
 		
 			<!-- Si HAY NUEVA LINEAVENTA MUESTRO EL FORMULARIO -->
     		<% if (nuevaLineaVenta != null && nuevaLineaVenta.getProd().getIdProducto() == p.getIdProducto()) { %>
-        	<form action="ConfirmarVenta" method="POST">
+        	<form action="GuardarLineaVenta" method="POST">
+        	<input type="hidden" name="idProducto" value="<%= p.getIdProducto() %>">
             <p><label> Cantidad: </label> <input type="text" name="cantidad" value="<%= nuevaLineaVenta.getCant() %>"></p>
-            <button type="submit" > Confirmar Venta</button>
+            <button type="submit" > Confirmar </button>
         	</form>
         	<form action="ProductosPorCategoria" method="POST"> 
             <button type="submit" > Volver </button>

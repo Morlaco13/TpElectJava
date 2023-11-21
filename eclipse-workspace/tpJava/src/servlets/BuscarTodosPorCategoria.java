@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import entidades.Categoria;
 import entidades.Producto;
+import entidades.Venta;
 import logic.ControladorCategoria;
 import logic.ControladorProducto;
 
@@ -29,7 +30,7 @@ public class BuscarTodosPorCategoria extends HttpServlet {
 		Categoria c = new Categoria();
 		LinkedList<Producto> prods = new LinkedList<Producto>();
 		
-		c.setIdCategoria(Integer.parseInt(request.getParameter("idCategoria")));
+		c.setIdCategoria(Integer.parseInt(request.getParameter("idCategoria")));		
 		
 		ControladorCategoria cc = new ControladorCategoria();
 		c = cc.getById(c);

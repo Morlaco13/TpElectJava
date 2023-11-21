@@ -5,120 +5,47 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import entidades.Categoria;
 import entidades.LineaVenta;
+import entidades.Marca;
+import entidades.Producto;
 import entidades.Venta;
 
 public class DatosVenta {
 
-	public ArrayList<Venta> buscarTodos() {
+	public Venta buscar(Venta v) { // Recibo una Venta que tenga solo el id
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
-		
-		ArrayList<Venta> ventas = new ArrayList<Venta>();
 
 		try {
-			stmt = Conexion.getInstancia().getConnection().prepareStatement("SENTENCIA SQL");
+			Venta venta = null;
+			
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("SELECT v.idVenta , v.fechaVenta "
+					+ " , v.cli FROM venta v where id = ?");
+			stmt.setInt(1, v.getIdVenta()); // Asigno al 1er ? el valor (no arranca en 0)
 			rs = stmt.executeQuery();
 
-			while (rs.next()) {
-				Venta venta = new Venta();
-
-				venta.setId(rs.getInt("id"));
-				venta.
-				venta.
-				venta.
-				venta.
-				venta.
-
-				ventas.add(venta);
+			if (rs != null && rs.next()) { //Consulta rs.next() no deberia estar?
+				venta.setIdVenta(rs.getInt("id"));
+				venta.setFechaVenta(rs.getDate("fechaVenta"));
+				//venta.setCli(rs.getCli("cli"));
+								
 			}
-		}
-		try {
-			if (rs != null)
-				rs.close();
-			if (stmt != null)
-				stmt.close();
-				Conexion.getInstancia().releaseConnection();
-		}
 
-		return ventas;
+			return venta;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			  try {
+				  if (rs != null) rs.close();
+				  if (stmt != null)
+					  stmt.close();
+				  	  Conexion.getInstancia().releaseConnection();
+			} catch (SQLException e){
+				e.printStackTrace();
+			}	 
+		}
 	}
-
-	public Venta buscarVentaDetallada(int idCompra) throws SQLException, Excepcion {
-		ResultSet resultado = null;
-		ResultSet resultado2 = null;
-		PreparedStatement sentenciaSQL = null;
-		Venta venta = new Venta();
-		ArrayList<LineaDeVenta> lineasDeVenta = new ArrayList<LineaDeVenta>();
-
-		try {
-			sentenciaSQL = Conexion.crearInstancia().abrirConexion().prepareStatement(
-					"SELECT cc.id, cc.fecha, cc.total, c.id, c.nombre, c.apellido, " +
-					"c.telefono, c.correoElectronico, c.domicilioCalle, c.domicilioNumero, " +
-					"c.domicilioPiso, c.domicilioDepto FROM compra_cliente cc LEFT JOIN clientes " +
-					"c ON cc.cliente = c.id WHERE cc.id = ?");
-			sentenciaSQL.setInt(1, idCompra);
-			resultado = sentenciaSQL.executeQuery();
-
-			while (resultado.next()) {
-
-				venta.setId(resultado.getInt("cc.id"));
-				venta.setFecha(resultado.getString("cc.fecha"));
-				venta.setTotal(resultado.getDouble("cc.total"));
-				venta.setId_cliente(resultado.getInt("c.id"));
-				venta.setNombre_cliente(resultado.getString("c.nombre"));
-				venta.setApellido_cliente(resultado.getString("c.apellido"));
-				venta.setTelefono(resultado.getString("c.telefono"));
-				venta.setCorreoElectronico(resultado.getString("c.correoElectronico"));
-				venta.setDomicilioCalle(resultado.getString("c.domicilioCalle"));
-				venta.setDomicilioNumero(resultado.getString("c.domicilioNumero"));
-				venta.setDomicilioPiso(resultado.getString("c.domicilioPiso"));
-				venta.setDomicilioDpto(resultado.getString("c.domicilioDepto"));
-				
-				sentenciaSQL = Conexion.crearInstancia().abrirConexion().prepareStatement(
-						"SELECT lcc.idProducto, lcc.cantidad, p.nombre, p.precioVenta FROM " +
-						"compra_cliente cc LEFT JOIN linea_compra_cliente lcc ON cc.id = lcc.idCompra " +
-						"LEFT JOIN productos p ON lcc.idProducto = p.id WHERE cc.id = ?");
-				sentenciaSQL.setInt(1, idCompra);
-				resultado2 = sentenciaSQL.executeQuery();
-				
-				while(resultado2.next()) {
-					LineaDeVenta linea = new LineaDeVenta();
-					linea.setIdProducto(resultado2.getInt("lcc.idProducto"));
-					linea.setNombreProducto(resultado2.getString("p.nombre"));
-					linea.setCantidad(resultado2.getDouble("lcc.cantidad"));
-					linea.setPrecioUnitario(resultado2.getDouble("p.precioVenta"));
-					
-					lineasDeVenta.add(linea);
-				}
-				
-				venta.setLineas(lineasDeVenta);
-			}
-		}
-
-		// Estos 2 "Catch" son para el "Try" principal (donde está la consulta a la base
-		// de datos)
-		catch (SQLException excepcion) {
-			throw new SQLException("Algo salió mal intentando buscar en la base de datos", excepcion);
-		}
-
-		catch (Excepcion excepcion) {
-			throw new Excepcion(excepcion, "Algo salió mal intentando buscar la venta");
-
-		}
-		// Este "Try-Catch" es para cerrar la conexión y sus resultados.
-		try {
-			if (resultado != null)
-				resultado.close();
-			if (sentenciaSQL != null)
-				sentenciaSQL.close();
-			Conexion.crearInstancia().cerrarConexion();
-		}
-
-		catch (SQLException excepcion) {
-			throw new SQLException("Error intentando cerrar la conexion a la base de datos", excepcion);
-		}
-		return venta;
-	}
-
 }

@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title> E-shop </title>
+		<title> E-shop </title>º
 	</head>
 	<body>
 		

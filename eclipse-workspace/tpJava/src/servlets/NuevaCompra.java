@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import entidades.Categoria;
 import entidades.Producto;
+import entidades.Venta;
 import logic.ControladorCategoria;
 import logic.ControladorProducto;
 
@@ -26,12 +27,18 @@ public class NuevaCompra extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Categoria> cats = new LinkedList<>();
-		//CREAR NUEVA VENTA ACA PARA TENER A FUTURO Y PODER GUARDAR LAS nuevaLineaVenta
+		Venta venta = new Venta();
+		HttpSession misesion = request.getSession();
+		//Chequeo si la venta existe
+		if (misesion.getAttribute("venta") != null) {
+			venta = (Venta) misesion.getAttribute("venta");
+		}
+		
 		ControladorCategoria cc = new ControladorCategoria();
 		cats = cc.listar();
 		
-		HttpSession misesion = request.getSession();
 		misesion.setAttribute("cats", cats);
+		misesion.setAttribute("venta", venta);
 		
 		response.sendRedirect("CategoriasParaComprar.jsp");
 	}

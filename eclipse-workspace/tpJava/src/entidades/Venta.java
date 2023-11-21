@@ -1,17 +1,28 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Venta {
 
 	private int idVenta;
 	private Date fechaVenta;
 	private Cliente cli;
-	private LineaVenta[] lineas;
+	
+	List<LineaVenta> lineas = new ArrayList<>();
 	
 	public int getIdVenta() {
 		return idVenta;
 	}
+	public void setLineas(List<LineaVenta> lineas) {
+		this.lineas = lineas;
+	}
+	
+	public List<LineaVenta> getLineas(){
+		return this.lineas;
+	}
+	
 	public void setIdVenta(int idVenta) {
 		this.idVenta = idVenta;
 	}
@@ -27,12 +38,9 @@ public class Venta {
 	public void setCli(Cliente cli) {
 		this.cli = cli;
 	}
-	public LineaVenta[] getLineas() {
-		return lineas;
-	}
-	public void setLineas(LineaVenta[] lineas) {
-		this.lineas = lineas;
-	}
 	
+	public void addLinea(LineaVenta linea) {
+		this.lineas.add(linea);
+	}
 	
 }
