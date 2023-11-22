@@ -28,17 +28,19 @@ public class NuevaCompra extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Categoria> cats = new LinkedList<>();
 		Venta venta = new Venta();
-		HttpSession misesion = request.getSession();
+		HttpSession misession = request.getSession();
+		String idCliente = "1"; //cliente de prueba
 		//Chequeo si la venta existe
-		if (misesion.getAttribute("venta") != null) {
-			venta = (Venta) misesion.getAttribute("venta");
+		if (misession.getAttribute("venta") != null) {
+			venta = (Venta) misession.getAttribute("venta");
 		}
 		
 		ControladorCategoria cc = new ControladorCategoria();
 		cats = cc.listar();
 		
-		misesion.setAttribute("cats", cats);
-		misesion.setAttribute("venta", venta);
+		misession.setAttribute("cats", cats);
+		misession.setAttribute("idCliente", idCliente);//Cliente prueba
+		misession.setAttribute("venta", venta);
 		
 		response.sendRedirect("CategoriasParaComprar.jsp");
 	}

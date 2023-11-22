@@ -1,8 +1,10 @@
 package datos;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import entidades.Categoria;
@@ -10,6 +12,7 @@ import entidades.LineaVenta;
 import entidades.Marca;
 import entidades.Producto;
 import entidades.Venta;
+import logic.ControladorPersona;
 
 public class DatosVenta {
 
@@ -28,7 +31,7 @@ public class DatosVenta {
 			if (rs != null && rs.next()) { //Consulta rs.next() no deberia estar?
 				venta.setIdVenta(rs.getInt("id"));
 				venta.setFechaVenta(rs.getDate("fechaVenta"));
-				//venta.setCli(rs.getCli("cli"));
+				//venta.setCli(rs.getInt("cli"));
 								
 			}
 
@@ -48,4 +51,37 @@ public class DatosVenta {
 			}	 
 		}
 	}
+	
+	public void alta(Venta v) {		
+		PreparedStatement stmt = null;
+		ResultSet keyRS = null;
+		
+		try {
+			stmt = Conexion.getInstancia().getConnection().prepareStatement(
+					"insert into venta(fechaVenta, cli) values(?)",
+					Statement.RETURN_GENERATED_KEYS);
+			//FALTA DATOS DE LA VENTA, INCLUIDO EL CLIENTE QUE DEBERIA APARECER EN LA SESSION
+			stmt.setDate(1, (Date) v.getFechaVenta());
+
+			stmt.executeUpdate(); // devuelve la cantidad de filas actualizadas
+			keyRS = stmt.getGeneratedKeys();
+
+			if (keyRS != null && keyRS.next()) {
+				v.setIdVenta(keyRS.getInt(1));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally
+		{try {
+				if (keyRS != null) keyRS.close();
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
+			  } catch (SQLException e) {
+				  e.printStackTrace();
+			  }	 
+		}
+	}
 }
+

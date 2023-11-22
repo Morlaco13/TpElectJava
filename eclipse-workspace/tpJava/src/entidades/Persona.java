@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Persona {
@@ -13,7 +14,14 @@ public class Persona {
 	private String email;
 	private boolean esAdmin;
 	private String password;
+	ArrayList<Venta> ventas = new ArrayList();
 	
+	public ArrayList<Venta> getVentas() {
+		return ventas;
+	}
+	public void setVentas(ArrayList<Venta> ventas) {
+		this.ventas = ventas;
+	}
 	public String getPassword() {
 		return password;
 	}

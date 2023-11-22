@@ -7,14 +7,24 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Mi Carrito</title>
+		<title> Compra Realizada </title>
 	</head>
 	<body>
-		<h1>Productos en el carrito: </h1>
-		<% Venta v = (Venta) request.getSession().getAttribute("venta");
-		   List<LineaVenta> lineaVenta = v.getLineas();
-		   int subtotal = 0;
-			for(LineaVenta lv : lineaVenta){
+		<h1>Compra realizada</h1>		
+			<% Venta v = (Venta) request.getSession().getAttribute("venta");
+			   int subtotal = 0;
+			   List<LineaVenta> lineaVenta = v.getLineas();
+			%>
+		<h2>Detalles de la compra:</h2>
+		<p>
+		<strong>Numero de compra:</strong><%=v.getIdVenta() %>
+		<strong>A nombre de:</strong><%=v.getCli().getNombre() + " " + v.getCli().getApellido() %>
+		<strong>Direccion: </strong><%=v.getCli().getDireccion() %>
+		<strong>Fecha: </strong><%=v.getFechaVenta() %>
+		</p>
+			
+		<%	
+			for(LineaVenta lv : lineaVenta) {
 				subtotal += (lv.getPrecioUnit()*lv.getCant());
 		%>
 			<p>
@@ -26,19 +36,11 @@
 			</p>
 
          <% } %>
-
-         	<p><strong>Total de carrito: </strong></p><%=subtotal %>
-         	</form>
-        	<form action="NuevaCompra" method="POST"> 
+			
+			<p><strong>TOTAL de compra: </strong></p><%=subtotal %>
+			
+			<form action="index" method=""> 
             <button type="submit" > SeguirComprando </button>
-            </form>
-			</form>
-        	<form action="FinalizarCompra" method="POST"> 
-            <button type="submit" > Confirmar </button>
-            </form>
-            </form>
-        	<form action="EliminarLineaVenta" method="POST"> 
-            <button type="submit" > Eliminar producto </button>
-            </form>
+            </form>			
 	</body>
 </html>

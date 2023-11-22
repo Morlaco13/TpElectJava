@@ -9,7 +9,6 @@ public class Venta {
 	private int idVenta;
 	private Date fechaVenta;
 	private Cliente cli;
-	
 	List<LineaVenta> lineas = new ArrayList<>();
 	
 	public int getIdVenta() {
