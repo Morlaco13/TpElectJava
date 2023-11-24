@@ -19,7 +19,7 @@ public class DatosPersona {
 		
 		try {
 			stmt = Conexion.getInstancia().getConnection().prepareStatement("select id, nombre, apellido, dni, telefono, "
-					+ "direccion, email, esAdmin from persona where "
+					+ "direccion, email, esAdmin, password from persona where "
 					+ "email=? and password=?");
 			
 			stmt.setString(1, per.getEmail());
@@ -36,6 +36,7 @@ public class DatosPersona {
 				p.setDireccion(rs.getString("direccion"));
 				p.setEmail(rs.getString("email"));
 				p.setEsAdmin(rs.getBoolean("esAdmin"));
+				p.setPassword(rs.getString("password"));
 			}
 			
 			return p;

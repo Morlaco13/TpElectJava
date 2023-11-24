@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 
+import entidades.Administrador;
 import entidades.Persona;
 
 public class DatosAdministrador {
@@ -52,30 +53,30 @@ public class DatosAdministrador {
 		}
 	}
 	
-	public Persona buscar(Persona p) { //Recibo una persona que tenga solo el id
+	public Administrador buscar(Administrador a) { //Recibo un admin que tenga solo el id
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 				
 		try {
-		Persona per = null;
+		Administrador admin = null;
 		stmt = Conexion.getInstancia().getConnection().prepareStatement("select * from persona where id = ?");
-		stmt.setInt(1, p.getIdPersona()); // Asigno al 1er ? el valor (no arranca en 0)
+		stmt.setInt(1, a.getIdPersona()); // Asigno al 1er ? el valor (no arranca en 0)
 		rs = stmt.executeQuery();
 		
 		if (rs != null && rs.next()) {
-			per = new Persona(); //Creo per aca porque sino encuentra debe devolver null
-			per.setIdPersona(rs.getInt("id"));
-			per.setNombre(rs.getString("nombre"));
-			per.setApellido(rs.getString("apellido"));
-			per.setDni(rs.getInt("dni"));
-			per.setTelefono(rs.getInt("telefono"));
-			per.setDireccion(rs.getString("direccion"));
-			per.setEmail(rs.getString("email"));
-			per.setEsAdmin(rs.getBoolean("esAdmin"));
+			admin = new Administrador(); //Creo per aca porque sino encuentra debe devolver null
+			admin.setIdPersona(rs.getInt("id"));
+			admin.setNombre(rs.getString("nombre"));
+			admin.setApellido(rs.getString("apellido"));
+			admin.setDni(rs.getInt("dni"));
+			admin.setTelefono(rs.getInt("telefono"));
+			admin.setDireccion(rs.getString("direccion"));
+			admin.setEmail(rs.getString("email"));
+			admin.setEsAdmin(rs.getBoolean("esAdmin"));
 			
 			}
 		
-		return per;
+		return admin;
 		
 		} catch (SQLException e) {
 			e.printStackTrace();

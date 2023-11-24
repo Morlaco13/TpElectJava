@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entidades.Cliente;
+import entidades.Persona;
 import entidades.Venta;
 import logic.ControladorCliente;
 import logic.ControladorVenta;
@@ -24,19 +25,14 @@ public class FinalizarCompra extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Cliente c = new Cliente();
-		ControladorVenta cv = new ControladorVenta();
-		ControladorCliente cc = new ControladorCliente();
-		HttpSession misession = request.getSession();	
-		
-		c.setIdPersona(Integer.parseInt((String) misession.getAttribute("idCliente")));
-		System.out.println(c.getIdPersona());
+		HttpSession misession = request.getSession();
+		Persona p = (Persona) misession.getAttribute("usuario");
 
-		c = cc.buscar(c);
-		System.out.println(c.getNombre());
+		ControladorVenta cv = new ControladorVenta();
+		ControladorCliente cc = new ControladorCliente();	
 		
 		Venta venta = (Venta) misession.getAttribute("venta");
-		venta.setCli(c);
+		venta.setCli(p);
 		//FALTA ELIMINAR PRODUCTOS DE LA BASE DE DATOS
 		cv.alta(venta);//GUARDO LA VENTA EN LA BASE DE DATOS
 		System.out.println(venta.getIdVenta());

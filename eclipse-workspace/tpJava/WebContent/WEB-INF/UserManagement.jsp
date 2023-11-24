@@ -12,7 +12,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" hred="http://getbootsrap.com/favicom.ico">
-	<title>Java Web Intro</title>
+	<title>E-SHOP UserManagement</title>
 
 	<!-- Bootstrap Core CSS -->
 	<link href="style/bootstrap.css" rel="stylesheet">

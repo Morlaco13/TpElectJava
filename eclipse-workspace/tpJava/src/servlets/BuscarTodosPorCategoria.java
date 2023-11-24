@@ -41,8 +41,6 @@ public class BuscarTodosPorCategoria extends HttpServlet {
 		
 		HttpSession misession = request.getSession();
 		misession.setAttribute("prods", prods);
-		String idCliente = (String) misession.getAttribute("idCliente");
-		System.out.println(idCliente);//prueba de cliente
 		
 		request.getRequestDispatcher("ProductosPorCategoria.jsp").forward(request, response);
 	}

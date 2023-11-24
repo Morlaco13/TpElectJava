@@ -29,7 +29,7 @@ public class NuevaCompra extends HttpServlet {
 		List<Categoria> cats = new LinkedList<>();
 		Venta venta = new Venta();
 		HttpSession misession = request.getSession();
-		String idCliente = "1"; //cliente de prueba
+		
 		//Chequeo si la venta existe
 		if (misession.getAttribute("venta") != null) {
 			venta = (Venta) misession.getAttribute("venta");
@@ -39,7 +39,6 @@ public class NuevaCompra extends HttpServlet {
 		cats = cc.listar();
 		
 		misession.setAttribute("cats", cats);
-		misession.setAttribute("idCliente", idCliente);//Cliente prueba
 		misession.setAttribute("venta", venta);
 		
 		response.sendRedirect("CategoriasParaComprar.jsp");

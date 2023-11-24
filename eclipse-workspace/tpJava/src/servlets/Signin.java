@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entidades.Administrador;
+import entidades.Cliente;
 import entidades.Persona;
+import logic.ControladorAdministrador;
+import logic.ControladorCliente;
 import logic.Login;
 
 
@@ -33,16 +37,28 @@ public class Signin extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		//Deberia validar
-		p.setEmail("email");
-		p.setPassword("password");
+		p.setEmail(email);
+		p.setPassword(password);
 		
 		p = ctrl.validate(p);
+		if ( p.isEsAdmin() != true ) {
+			Cliente c = new Cliente();
+			ControladorCliente cc = new ControladorCliente();
+			c.setIdPersona(p.getIdPersona());
+			c = cc.buscar(c);
+			request.getSession().setAttribute("usuario", c);
+		} else {
+			Administrador a = new Administrador();
+			ControladorAdministrador ca = new ControladorAdministrador();
+			a.setIdPersona(p.getIdPersona());
+			a = ca.buscar(a);
+			request.getSession().setAttribute("usuario", a);
+		}
 		
 		LinkedList<Persona> personas = ctrl.getAll();
 		
-		request.getSession().setAttribute("usuario", p);
 		request.setAttribute("listaPersonas", personas);
-		request.getRequestDispatcher("WEB-INF/UserManagement.jsp").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }
