@@ -9,7 +9,7 @@
 	<body>
 		<h1>Nuevo producto</h1>
 		
-		<form action="altaProducto" method="POST"> <!-- No funciona si cambio el nombre a BuscarTodosProducto -->
+		<form action="altaProducto" method="post">
 			<p><label> ID: </label> <input type="text" name="id"></p>
 			<p><label> Descripcion: </label> <input type="text" name="descripcion"></p>
 			<p><label> Nombre: </label> <input type="text" name="nombre"></p>

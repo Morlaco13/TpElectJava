@@ -18,8 +18,8 @@
 		<h2>Detalles de la compra:</h2>
 		<p>
 		<strong>Numero de compra:</strong><%=v.getIdVenta() %>
-		<strong>A nombre de:</strong><%=v.getCli().getNombre() + " " + v.getCli().getApellido() %>
-		<strong>Direccion: </strong><%=v.getCli().getDireccion() %>
+		<strong>A nombre de:</strong><%=v.getPer().getNombre() + " " + v.getPer().getApellido() %>
+		<strong>Direccion: </strong><%=v.getPer().getDireccion() %>
 		<strong>Fecha: </strong><%=v.getFechaVenta() %>
 		</p>
 			

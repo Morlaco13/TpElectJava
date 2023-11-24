@@ -20,9 +20,4 @@ public class Categoria {
 	public void setNombre(String nombre) {
 		this.nombreCat = nombre;
 	}
-
-	@Override
-	public String toString() { // NO SE USA, SOLO PARA PROBAR POR CONSOLA
-		return "nombreCat=" + nombreCat +"\n";
-	}
 }

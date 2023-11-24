@@ -20,8 +20,5 @@ public class Marca {
 	public void setNombre(String nombre) {
 		this.nombreMarca = nombre;
 	}
-	@Override
-	public String toString() { // NO SE USA, SOLO PARA PROBAR POR CONSOLA
-		return "nombreMarca=" + nombreMarca +"\n";
-	}
+
 }

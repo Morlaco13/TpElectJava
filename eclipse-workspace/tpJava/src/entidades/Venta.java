@@ -8,7 +8,8 @@ public class Venta {
 
 	private int idVenta;
 	private Date fechaVenta;
-	private Cliente cli;
+	//private Cliente cli;
+	private Persona per;
 	List<LineaVenta> lineas = new ArrayList<>();
 	
 	public int getIdVenta() {
@@ -31,11 +32,18 @@ public class Venta {
 	public void setFechaVenta(Date fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
-	public Cliente getCli() {
-		return cli;
+	//public Cliente getCli() {
+	//	return cli;
+	//}
+	//public void setCli(Cliente cli) {
+	//	this.cli = cli;
+	//}
+	
+	public Persona getPer() {
+		return per;
 	}
-	public void setCli(Cliente cli) {
-		this.cli = cli;
+	public void setPer(Persona per) {
+		this.per = per;
 	}
 	
 	public void addLinea(LineaVenta linea) {

@@ -62,6 +62,7 @@ public class DatosVenta {
 					Statement.RETURN_GENERATED_KEYS);
 			//FALTA DATOS DE LA VENTA, INCLUIDO EL CLIENTE QUE DEBERIA APARECER EN LA SESSION
 			stmt.setDate(1, (Date) v.getFechaVenta());
+			stmt.setInt(2, v.getPer().getIdPersona());
 
 			stmt.executeUpdate(); // devuelve la cantidad de filas actualizadas
 			keyRS = stmt.getGeneratedKeys();

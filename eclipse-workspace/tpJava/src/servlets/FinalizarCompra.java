@@ -32,7 +32,7 @@ public class FinalizarCompra extends HttpServlet {
 		ControladorCliente cc = new ControladorCliente();	
 		
 		Venta venta = (Venta) misession.getAttribute("venta");
-		venta.setCli(p);
+		venta.setPer(p);
 		//FALTA ELIMINAR PRODUCTOS DE LA BASE DE DATOS
 		cv.alta(venta);//GUARDO LA VENTA EN LA BASE DE DATOS
 		System.out.println(venta.getIdVenta());
