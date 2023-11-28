@@ -34,7 +34,9 @@ public class BuscarProductoPorId extends HttpServlet {
 		HttpSession misesion = request.getSession();
 		misesion.setAttribute("p", p);
 		
-		response.sendRedirect("viewProducto.jsp");
+		cp.baja(p); //DA DE BAJA EL OBJETO
+		
+		response.sendRedirect("ProductoEliminado.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

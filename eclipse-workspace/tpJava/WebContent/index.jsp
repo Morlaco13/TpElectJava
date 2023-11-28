@@ -22,14 +22,21 @@
 					Cliente user = (Cliente) request.getSession().getAttribute("usuario");
 					%>
 					<h1>Bienvenido <%=user.getNombre() + " " %><%=user.getApellido()%></h1>
+					<h1> COMPRA </h1>
+					<form action="NuevaCompra" method="GET">
+					<button type="submit" > Comprar productos</button>
+					</form>
+		
+					<h1> PRODUCTOS </h1>
+					<h1> </h1>
+					<form action="BuscarTodosProducto" method="GET">
+					<button type="submit" > Mostrar productos</button>
+					</form>
 				<% } else{
 					Administrador user = (Administrador) request.getSession().getAttribute("usuario");
 					%>
 					<h1>Bienvenido Admin <%=user.getNombre() + " " %><%=user.getApellido()%></h1>
-				<% } %>
-		<% }%>
-		
-		<h1> COMPRA </h1>
+					<h1> COMPRA </h1>
 		<form action="NuevaCompra" method="GET">
 		<button type="submit" > Comprar productos</button>
 		</form>
@@ -70,6 +77,8 @@
 		<form action="FormularioBusquedaPorDniServlet" method="POST">
 		<button type="submit" > Buscar usuario por DNI</button>
 		</form>
+				<% } %>
+		<% }%>
 		
 	</body>
 </html>

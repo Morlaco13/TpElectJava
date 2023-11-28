@@ -25,6 +25,10 @@
 			<p>stock: <%=p.getStock() %></p>
 			<p>categoria: <%=p.getCat() %></p>
 			<p>marca: <%=p.getBrand() %></p>
+			
+			<form action="BajaProducto" method="POST" >
+			<button type="submit" > Borrar producto </button>
+			</form>
 		
 			<!-- Si HAY NUEVA LINEAVENTA MUESTRO EL FORMULARIO -->
     		<% if (nuevaLineaVenta != null && nuevaLineaVenta.getProd().getIdProducto() == p.getIdProducto()) { %>
