@@ -214,6 +214,32 @@ public class DatosProductos {
 		}
 	}
 	
+	public void updatePorCompra(int cant, int id) {
+		System.out.println("entre al update");
+		PreparedStatement stmt = null;
+
+		try {
+			stmt = Conexion.getInstancia().getConnection().prepareStatement(
+					"UPDATE producto SET stock = stock-? WHERE id = ?");
+
+			stmt.setInt(1, cant); // Restar la cantidad vendida al stock
+		    stmt.setInt(2, id);   // ID del producto
+
+			stmt.executeUpdate(); // mod a los datos
+			System.out.println("reste: "+cant+" al producto "+id);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();			 
+			 } catch (SQLException e) { e.printStackTrace();
+			 }	 
+		}
+	}
+	
 	public LinkedList<Producto> listadoPorPrecioA() {
 		Statement stmt = null;
 		ResultSet rs = null;

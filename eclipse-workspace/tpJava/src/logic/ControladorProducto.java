@@ -45,5 +45,9 @@ public class ControladorProducto {
 		datos = new DatosProductos();
 		return datos.listadoPorPrecioD();
 	}
+
+	public void updatePorCompra(int cant, int idProducto) {
+		datos.updatePorCompra(cant, idProducto);
+	}
 	
 }

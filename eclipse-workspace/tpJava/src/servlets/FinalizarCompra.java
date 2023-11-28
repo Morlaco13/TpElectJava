@@ -17,6 +17,7 @@ import entidades.Persona;
 import entidades.Venta;
 import logic.ControladorCliente;
 import logic.ControladorLineaVenta;
+import logic.ControladorProducto;
 import logic.ControladorVenta;
 
 @WebServlet("/FinalizarCompra")
@@ -37,6 +38,7 @@ public class FinalizarCompra extends HttpServlet {
 		ControladorVenta cv = new ControladorVenta();
 		ControladorCliente cc = new ControladorCliente();
 		ControladorLineaVenta cl = new ControladorLineaVenta();
+		ControladorProducto cp = new ControladorProducto();
 		
 		Venta venta = (Venta) misession.getAttribute("venta");
 		venta.setPer(p);
@@ -46,8 +48,9 @@ public class FinalizarCompra extends HttpServlet {
 		//Creo las lineaVenta en la BD
 		ArrayList<LineaVenta> lineaventa = (ArrayList<LineaVenta>) venta.getLineas();
 		for ( LineaVenta lv : lineaventa) {
-			cl.alta(lv);
-		}		
+			cl.alta(lv); //DA ERROR SI ES ADMIN
+			cp.updatePorCompra(lv.getCant(), lv.getProd().getIdProducto());
+		}
 		
 		misession.setAttribute("venta", venta);
 		
