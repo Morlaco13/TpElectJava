@@ -31,7 +31,7 @@ public class DatosVenta {
 			if (rs != null && rs.next()) { //Consulta rs.next() no deberia estar?
 				venta.setIdVenta(rs.getInt("id"));
 				venta.setFechaVenta(rs.getDate("fechaVenta"));
-				//venta.setCli(rs.getInt("cli"));
+				//venta.setPer(rs.getInt("cli"));
 								
 			}
 
@@ -52,13 +52,13 @@ public class DatosVenta {
 		}
 	}
 	
-	public void alta(Venta v) {		
+	public Venta alta(Venta v) {		
 		PreparedStatement stmt = null;
 		ResultSet keyRS = null;
 		
 		try {
 			stmt = Conexion.getInstancia().getConnection().prepareStatement(
-					"insert into venta(fechaVenta, cli) values(?)",
+					"insert into venta(fechaVenta, cli) values(?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			//FALTA DATOS DE LA VENTA, INCLUIDO EL CLIENTE QUE DEBERIA APARECER EN LA SESSION
 			stmt.setDate(1, (Date) v.getFechaVenta());
@@ -69,6 +69,12 @@ public class DatosVenta {
 
 			if (keyRS != null && keyRS.next()) {
 				v.setIdVenta(keyRS.getInt(1));
+				
+				ArrayList<LineaVenta> lineaVenta = (ArrayList<LineaVenta>) v.getLineas();
+				for (LineaVenta lv : lineaVenta) { //AGREGO IDVENTA A LAS LINEASVENTAS
+					lv.setIdVenta(v.getIdVenta());
+				}
+				v.setLineas(lineaVenta);
 			}
 
 		} catch (SQLException e) {
@@ -83,6 +89,6 @@ public class DatosVenta {
 				  e.printStackTrace();
 			  }	 
 		}
+		return v; //TUVIMOS QUE PONERLO ACA PORQUE NO FUNCIONABA SINO Y NO PUDIMOS SOLUCIONARLO
 	}
 }
-

@@ -5,7 +5,14 @@ public class LineaVenta {
 	private Producto prod;
 	private int cant;
 	private int precioUnit;
+	private int idVenta;
 	
+	public int getIdVenta() {
+		return idVenta;
+	}
+	public void setIdVenta(int idVenta) {
+		this.idVenta = idVenta;
+	}
 	public Producto getProd() {
 		return prod;
 	}

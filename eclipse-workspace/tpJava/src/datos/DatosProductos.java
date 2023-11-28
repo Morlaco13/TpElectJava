@@ -252,8 +252,6 @@ public class DatosProductos {
 				prods.add(p);
 			}
 
-	        System.out.println("Número de productos en la lista: " + prods.size());
-
 			return prods;
 			
 	} catch (SQLException e) {

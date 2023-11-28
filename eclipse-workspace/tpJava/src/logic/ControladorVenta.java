@@ -7,7 +7,8 @@ public class ControladorVenta {
 
 	DatosVenta datos = new DatosVenta();
 	
-	public void alta(Venta v){
-		datos.alta(v);
+	public Venta alta(Venta v){
+		datos = new DatosVenta();
+		return datos.alta(v);
 	}
 }

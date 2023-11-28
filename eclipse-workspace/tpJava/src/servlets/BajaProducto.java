@@ -28,8 +28,8 @@ public class BajaProducto extends HttpServlet {
 		
 		cp.baja(p);
 		
-		HttpSession misesion = request.getSession();
-		misesion.setAttribute("p", p);
+		HttpSession misession = request.getSession();
+		misession.setAttribute("p", p);
 		
 		response.sendRedirect("FormularioBajaProducto.jsp");
 	}

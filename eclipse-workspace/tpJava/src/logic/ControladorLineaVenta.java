@@ -1,12 +1,13 @@
 package logic;
 
-import entidades.Producto;
+import datos.DatosLineaVenta;
+import entidades.LineaVenta;
 
 public class ControladorLineaVenta {
 	
-	ControladorLineaVenta datos = new ControladorLineaVenta();
+	DatosLineaVenta datos = new DatosLineaVenta();
 	
-	public void alta(){
-		datos.alta();
+	public void alta(LineaVenta lineaventa){
+		datos.alta(lineaventa);
 	}
 }

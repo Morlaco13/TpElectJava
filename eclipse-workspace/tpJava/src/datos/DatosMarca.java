@@ -63,7 +63,6 @@ public class DatosMarca {
 			mar.setNombre(rs.getString("nombreMarca"));
 			
 			}
-		System.out.println(mar);
 		return mar;
 		
 		} catch (SQLException e) {

@@ -32,12 +32,10 @@ public class Venta {
 	public void setFechaVenta(Date fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
-	//public Cliente getCli() {
-	//	return cli;
-	//}
-	//public void setCli(Cliente cli) {
-	//	this.cli = cli;
-	//}
+	
+	public void setFechaVentaActual() {
+        fechaVenta = new java.sql.Date(System.currentTimeMillis());
+    }
 	
 	public Persona getPer() {
 		return per;

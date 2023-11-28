@@ -30,8 +30,6 @@ public class DatosCliente {
 			cli.setEsAdmin(rs.getBoolean("esAdmin"));
 			
 			}
-		System.out.println("Encontre a: ");
-		System.out.println(cli);
 		return cli;
 		
 		} catch (SQLException e) {
