@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entidades.Producto;
+import logic.ControladorCategoria;
+import logic.ControladorMarca;
 import logic.ControladorProducto;
 
 
@@ -34,9 +36,7 @@ public class BuscarProductoPorId extends HttpServlet {
 		HttpSession misesion = request.getSession();
 		misesion.setAttribute("p", p);
 		
-		cp.baja(p); //DA DE BAJA EL OBJETO
-		
-		response.sendRedirect("ProductoEliminado.jsp");
+		response.sendRedirect("viewProducto.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

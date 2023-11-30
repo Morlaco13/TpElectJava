@@ -23,8 +23,8 @@
 			<p>nombre: <%=p.getNombre() %></p>
 			<p>precio: <%=p.getPrecio() %></p>
 			<p>stock: <%=p.getStock() %></p>
-			<p>categoria: <%=p.getCat() %></p>
-			<p>marca: <%=p.getBrand() %></p>
+			<p>categoria: <%=p.getCat().getNombre() %></p>
+			<p>marca: <%=p.getBrand().getNombre() %></p>
 			
 			<form action="BajaProducto" method="POST" >
 			<button type="submit" > Borrar producto </button>
@@ -42,5 +42,6 @@
             </form>
    			<% } %>
 			
+			<a href="index.jsp">Volver a Inicio</a>
 	</body>
 </html>

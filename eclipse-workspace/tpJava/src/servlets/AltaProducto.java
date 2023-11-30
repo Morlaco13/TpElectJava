@@ -45,7 +45,7 @@ public class AltaProducto extends HttpServlet {
 		HttpSession misession = request.getSession();
 		misession.setAttribute("p", p);
 		
-		response.sendRedirect("FormularioAltaProducto.jsp");
+		response.sendRedirect("ProductoAgregado.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -21,5 +21,5 @@
             	<a href="BuscarTodosPorCategoria?idCategoria=<%=c.getIdCategoria()%>">Mostrar Productos</a>
         		</p>
 		<% } %>
-
+		<a href="index.jsp">Volver a Inicio</a>
 	</body>

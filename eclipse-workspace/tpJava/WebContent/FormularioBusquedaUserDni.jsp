@@ -12,5 +12,7 @@
 		<p><label> Dni: </label> <input type="text" name="dni"></p>
 		<button type="submit" > Buscar usuario</button>
 		</form>
+		
+		<a href="index.jsp">Volver a Inicio</a>
 	</body>
 </html>

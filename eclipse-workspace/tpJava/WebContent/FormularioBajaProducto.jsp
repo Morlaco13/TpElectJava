@@ -13,5 +13,6 @@
 		<p><label> ID: </label> <input type="text" name="id"></p>
 		<button type="submit" > Buscar producto</button>
 		
+		<a href="index.jsp">Volver a Inicio</a>
 	</body>
 </html>

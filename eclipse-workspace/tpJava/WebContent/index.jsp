@@ -59,7 +59,7 @@
 		<button type="submit" > baja producto</button>
 		</form>
 		
-		<form action="FormularioModificarProductoServlet" method="POST">
+		<form action="FormularioModificarProducto" method="POST">
 		<button type="submit" > Modificar producto</button>
 		</form>
 		

@@ -24,14 +24,17 @@ public class BajaProducto extends HttpServlet {
 		
 		Producto p = new Producto();
 		
+		p.setIdProducto(Integer.parseInt(request.getParameter("id")));
+		
 		ControladorProducto cp = new ControladorProducto();
+		p = cp.buscar(p);
 		
-		cp.baja(p);
+		HttpSession misesion = request.getSession();
+		misesion.setAttribute("p", p);
 		
-		HttpSession misession = request.getSession();
-		misession.setAttribute("p", p);
+		cp.baja(p); //DA DE BAJA EL OBJETO
 		
-		response.sendRedirect("FormularioBajaProducto.jsp");
+		response.sendRedirect("ProductoEliminado.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -30,7 +30,7 @@
          	<p><strong>Total de carrito: </strong></p><%=subtotal %>
          	</form>
         	<form action="NuevaCompra" method="POST"> 
-            <button type="submit" > SeguirComprando </button>
+            <button type="submit" > Seguir Comprando </button>
             </form>
 			</form>
         	<form action="FinalizarCompra" method="POST"> 
@@ -40,5 +40,7 @@
         	<form action="EliminarLineaVenta" method="POST"> 
             <button type="submit" > Eliminar producto </button>
             </form>
+            
+            <a href="index.jsp">Volver a Inicio</a>
 	</body>
 </html>

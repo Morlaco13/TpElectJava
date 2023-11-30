@@ -4,10 +4,10 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-		<title>Producto eliminado</title>
+		<title>Producto agregado</title>
 	</head>
 	<body>
-		<h1>PRODUCTO ELIMINADO CORRECTAMENTE</h1>
+		<h1>PRODUCTO AGREGADO CORRECTAMENTE</h1>
         
         <a href="index.jsp">Volver a Inicio</a>
 	</body>

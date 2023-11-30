@@ -23,5 +23,6 @@
 		
 		<p>---------------------------------</p>
 
+		<a href="index.jsp">Volver a Inicio</a>
 	</body>
 </html>
