@@ -34,4 +34,9 @@ public class ControladorCategoria {
 	public void update(Categoria c) {
 		datos.update(c);
 	}
+
+	public Categoria buscarPorNombre(Categoria c) {
+		datos = new DatosCategoria();
+		return datos.buscarPorNombre(c);		
+	}
 }

@@ -21,8 +21,8 @@
             	<strong>Nombre:</strong> <%=p.getNombre() %> |
             	<strong>Precio:</strong> <%=p.getPrecio() %> |
             	<strong>Stock:</strong> <%=p.getStock() %> |
-            	<strong>Categoría:</strong> <%=p.getCat() %> |
-            	<strong>Marca:</strong> <%=p.getBrand() %>
+            	<strong>Categoría:</strong> <%=p.getCat().getNombre() %> |
+            	<strong>Marca:</strong> <%=p.getBrand().getNombre() %>
         		</p>
 		
 				<p>---------------------------------</p>

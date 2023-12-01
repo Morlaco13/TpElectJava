@@ -49,7 +49,7 @@ public class DatosCategoria {
 		}
 	}
 	
-	public Categoria buscar(Categoria c) { //Recibo una persona que tenga solo el id
+	public Categoria buscar(Categoria c) {
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 				
@@ -196,4 +196,36 @@ public class DatosCategoria {
 		}
 	}
 
+	public Categoria buscarPorNombre(Categoria c) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+					
+		try {
+		Categoria cat = null;
+		stmt = Conexion.getInstancia().getConnection().prepareStatement("SELECT * FROM categoria where nombreCat = ?");
+		stmt.setString(1, c.getNombre()); // Asigno al 1er ? el valor (no arranca en 0)
+		rs = stmt.executeQuery();
+			
+		if (rs != null && rs.next()) {
+			cat = new Categoria(); //Creo per aca porque sino encuentra debe devolver null
+			cat.setIdCategoria(rs.getInt("idCategoria"));
+			cat.setNombre(rs.getString("nombreCat"));				
+			}
+			
+		return cat;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) 
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
+				} catch (SQLException e) {
+					e.printStackTrace();
+			}
+		}
+	}
 }

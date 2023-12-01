@@ -24,7 +24,7 @@ public class BajaProducto extends HttpServlet {
 		
 		Producto p = new Producto();
 		
-		p.setIdProducto(Integer.parseInt(request.getParameter("id")));
+		p.setIdProducto(Integer.parseInt(request.getParameter("idProducto")));
 		
 		ControladorProducto cp = new ControladorProducto();
 		p = cp.buscar(p);

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 
+import entidades.Categoria;
 import entidades.Marca;
 
 public class DatosMarca {
@@ -154,6 +155,38 @@ public class DatosMarca {
 					Conexion.getInstancia().releaseConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}
+		}
+	}
+
+	public Marca buscarPorNombre(Marca m) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+					
+		try {
+		Marca marca = new Marca();
+		stmt = Conexion.getInstancia().getConnection().prepareStatement("SELECT * FROM marca where nombreMarca = ?");
+		stmt.setString(1, m.getNombre()); // Asigno al 1er ? el valor (no arranca en 0)
+		rs = stmt.executeQuery();
+			
+		if (rs != null && rs.next()) {
+			marca.setIdMarca(rs.getInt("idMarca"));
+			marca.setNombre(rs.getString("nombreMarca"));				
+			}
+			
+		return marca;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) 
+					stmt.close();
+					Conexion.getInstancia().releaseConnection();
+				} catch (SQLException e) {
+					e.printStackTrace();
 			}
 		}
 	}

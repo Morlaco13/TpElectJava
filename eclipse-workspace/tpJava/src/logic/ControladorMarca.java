@@ -29,4 +29,9 @@ public class ControladorMarca {
 	public void update(Marca m) {
 		datos.update(m);
 	}
+
+	public Marca buscarPorNombre(Marca m) {
+		datos = new DatosMarca();
+		return datos.buscarPorNombre(m);
+	}
 }

@@ -27,7 +27,13 @@
 			<p>marca: <%=p.getBrand().getNombre() %></p>
 			
 			<form action="BajaProducto" method="POST" >
+			<input type="hidden" name="idProducto" value="<%= p.getIdProducto() %>">
 			<button type="submit" > Borrar producto </button>
+			</form>
+			
+			<form action="FormularioModificarProducto" method="POST" >
+			<input type="hidden" name="idProducto" value="<%= p.getIdProducto() %>">
+			<button type="submit" > Modificar producto </button>
 			</form>
 		
 			<!-- Si HAY NUEVA LINEAVENTA MUESTRO EL FORMULARIO -->
