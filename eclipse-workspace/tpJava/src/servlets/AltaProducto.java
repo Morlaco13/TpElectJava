@@ -30,10 +30,12 @@ public class AltaProducto extends HttpServlet {
 		ControladorProducto cp = new ControladorProducto();
 		ControladorMarca cm = new ControladorMarca();
 		ControladorCategoria cc = new ControladorCategoria();
-		m.setIdMarca(Integer.parseInt(request.getParameter("marca")));
-		p.setBrand(cm.buscar(m));
-		c.setIdCategoria(Integer.parseInt(request.getParameter("categoria")));
-		p.setCat(cc.buscar(c));
+
+		m.setNombre(request.getParameter("marca"));
+		p.setBrand(cm.buscarPorNombre(m));
+
+		c.setNombre(request.getParameter("categoria"));
+		p.setCat(cc.buscarPorNombre(c));
 		
 		p.setNombre(request.getParameter("nombre"));
 		p.setDescripcion(request.getParameter("descripcion"));

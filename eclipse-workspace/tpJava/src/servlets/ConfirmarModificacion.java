@@ -46,9 +46,7 @@ public class ConfirmarModificacion extends HttpServlet {
 		p.setPrecio(Integer.parseInt(request.getParameter("precio")));
 		p.setStock(Integer.parseInt(request.getParameter("stock")));
 		p.setCat(c);
-		System.out.println(p.getCat().getIdCategoria());
 		p.setBrand(m);
-		System.out.println(p.getBrand().getIdMarca());
 		
 		cp.update(p);
 		

@@ -20,8 +20,8 @@
             	<strong>Nombre:</strong> <%=p.getNombre() %> |
             	<strong>Precio:</strong> <%=p.getPrecio() %> |
             	<strong>Stock:</strong> <%=p.getStock() %> |
-            	<strong>Categoría:</strong> <%=p.getCat() %> |
-            	<strong>Marca:</strong> <%=p.getBrand() %>
+            	<strong>Categoría:</strong> <%=p.getCat().getNombre() %> |
+            	<strong>Marca:</strong> <%=p.getBrand().getNombre() %>
             	<form action="NuevaLineaVenta" method="POST">
             	<input type="hidden" name="idProducto" value="<%= p.getIdProducto() %>">
 				<p><label> Cantidad: </label> <input type="text" name="cantidad"></p>

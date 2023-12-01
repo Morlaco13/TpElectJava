@@ -52,16 +52,8 @@
 		</form>
 		
 		<form action="FormularioAltaProductoServlet" method="POST">
-		<button type="submit" > alta producto</button>
+		<button type="submit" > Alta producto</button>
 		</form>
-		
-		<!-- <form action="FormularioBajaProductoServlet" method="POST">
-		<button type="submit" > baja producto</button>
-		</form> -->
-		
-		<!-- <form action="FormularioModificarProducto" method="POST">
-		<button type="submit" > Modificar producto</button>
-		</form> -->
 		
 		<h1> USUARIOS </h1>
 		<h1> </h1>

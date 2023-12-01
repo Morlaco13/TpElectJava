@@ -12,8 +12,8 @@
 		<form action="AltaProducto" method="POST">
 		<p><label> Descripcion: </label> <input type="text" name="descripcion"></p>
 		<p><label> Nombre: </label> <input type="text" name="nombre"></p>
-		<p><label> precio: </label> <input type="text" name="precio"></p>
-		<p><label> stock: </label> <input type="text" name="stock"></p>
+		<p><label> precio: </label> <input type="number" name="precio"></p>
+		<p><label> stock: </label> <input type="number" name="stock"></p>
 		<p><label> categoria: </label> <input type="text" name="categoria"></p>
 		<p><label> marca: </label> <input type="text" name="marca"></p>		
 		<button type="submit" > Agregar producto</button>

@@ -193,19 +193,12 @@ public class DatosProductos {
 					"UPDATE producto SET nombre = ?, descripcion = ?, precio = ?, stock = ?, idmarca = ?, idcategoria = ? where id = ?");
 
 			stmt.setString(1, p.getNombre());
-			System.out.println(p.getNombre());
 			stmt.setString(2, p.getDescripcion());
-			System.out.println(p.getDescripcion());
 			stmt.setInt(3, p.getPrecio());
-			System.out.println(p.getPrecio());
 			stmt.setInt(4, p.getStock());
-			System.out.println(p.getStock());
 			stmt.setInt(5, p.getBrand().getIdMarca());
-			System.out.println(p.getBrand().getIdMarca());
 			stmt.setInt(6, p.getCat().getIdCategoria());
-			System.out.println(p.getCat().getIdCategoria());
 			stmt.setInt(7, p.getIdProducto());
-			System.out.println(p.getIdProducto());
 
 			stmt.executeUpdate(); // mod a los datos
 
