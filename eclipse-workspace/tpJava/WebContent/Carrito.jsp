@@ -11,9 +11,10 @@
 	</head>
 	<body>
 		<h1>Productos en el carrito: </h1>
-		<% Venta v = (Venta) request.getSession().getAttribute("venta");
-		   List<LineaVenta> lineaVenta = v.getLineas();
-		   int subtotal = 0;
+		<% Venta v = (Venta) request.getSession().getAttribute("venta"); %>
+		<% if (v != null){ %>
+		<% List<LineaVenta> lineaVenta = v.getLineas();
+		   	int subtotal = 0;
 			for(LineaVenta lv : lineaVenta){
 				subtotal += (lv.getPrecioUnit()*lv.getCant());
 		%>
@@ -44,6 +45,9 @@
             	</form>
             <% } else { %>
             <p> CARRITO VACIO </p>
+            <% } %>
+            <% } else { %>
+            	<p> CARRITO VACIO </p>
             <% } %>
             
             <a href="index.jsp">Volver a Inicio</a>

@@ -44,7 +44,7 @@ public class NuevaLineaVenta extends HttpServlet {
 	    session.setAttribute("nuevaLineaVenta", nuevaLineaVenta);
 	    
 	    // Voy a viewProductos
-	    response.sendRedirect("viewProducto.jsp");
+	    response.sendRedirect("MostrarProducto.jsp");
 		doGet(request, response);
 	}
 

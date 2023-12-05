@@ -24,7 +24,9 @@
             	<strong>Categoría:</strong> <%=p.getCat().getNombre() %> |
             	<strong>Marca:</strong> <%=p.getBrand().getNombre() %>
         		</p>
-		
+				<% if (p.getStock() == 0) { %>
+				<p> Producto no disponible </p>
+				<% } %>
 				<p>---------------------------------</p>
 		<% } %>
 		<a href="index.jsp">Volver a Inicio</a>

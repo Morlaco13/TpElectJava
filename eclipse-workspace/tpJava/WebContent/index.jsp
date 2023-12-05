@@ -72,5 +72,10 @@
 				<% } %>
 		<% }%>
 		
+		<h1> CARRITO </h1>
+		<form action="MostrarCarrito" method="POST">
+		<button type="submit" > CARRITO </button>
+		</form>
+		
 	</body>
 </html>
