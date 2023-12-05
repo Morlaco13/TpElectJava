@@ -13,6 +13,7 @@
 		<%
 			List<Producto> listaProductos = (List<Producto>) request.getSession().getAttribute("prods");
 			for(Producto p : listaProductos){
+				if (p.getStock() != 0){
 		%>
 				<p>
             	<strong>ID:</strong> <%=p.getIdProducto() %> |
@@ -24,12 +25,13 @@
             	<strong>Marca:</strong> <%=p.getBrand().getNombre() %>
             	<form action="NuevaLineaVenta" method="POST">
             	<input type="hidden" name="idProducto" value="<%= p.getIdProducto() %>">
-				<p><label> Cantidad: </label> <input type="text" name="cantidad"></p>
+				<p><label> Cantidad: </label> <input type="text" name="cantidad" value="1"></p>
 				<button type="submit" > Cargar al carrito</button>
 				</form>
         						
 		
 				<p>---------------------------------</p>
+				<% } %>
 		<% } %>
 		<a href="index.jsp">Volver a Inicio</a>
 	</body>
