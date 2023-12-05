@@ -39,10 +39,10 @@
 			
 			<p><strong>TOTAL de compra: </strong></p><%=subtotal %>
 			
-			<form action="index" method=""> 
+			<form action="NuevaCompra" method="GET">
             <button type="submit" > Seguir Comprando </button>
-            </form>		
-            
-            <a href="index.jsp">Volver a Inicio</a>	
+            </form>	
+
+            <a href="index.jsp">Volver a Inicio</a>
 	</body>
 </html>

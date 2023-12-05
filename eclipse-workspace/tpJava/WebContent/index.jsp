@@ -10,7 +10,7 @@
 		<title> E-shop </title>
 	</head>
 	<body>
-		
+		<h1> Bienvenidos E-Shop </h1>
 		<%	if (request.getSession().getAttribute("usuario") == null){ %>
 		
 		<h1> Log In </h1>

@@ -10,4 +10,8 @@ public class ControladorLineaVenta {
 	public void alta(LineaVenta lineaventa){
 		datos.alta(lineaventa);
 	}
+
+	public void baja(LineaVenta lv) {
+		datos.baja(lv);	
+	}
 }

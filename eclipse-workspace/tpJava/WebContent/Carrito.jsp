@@ -23,23 +23,28 @@
 			<strong>Cantidad:</strong> <%=lv.getCant() %>
 			<strong>Precio:</strong> <%=lv.getPrecioUnit() %> |
 			<strong>SubTotal:</strong> <%=(lv.getPrecioUnit()*lv.getCant())  %>
+			
+			<form action="EliminarLineaVenta" method="GET">
+				<input type="hidden" name="idProducto" value="<%= lv.getProd().getIdProducto() %>">	
+            	<button type="submit" > Eliminar </button>
+            </form>
 			</p>
 
          <% } %>
-
+			<% if (subtotal != 0) { %>
+			<form>
          	<p><strong>Total de carrito: </strong></p><%=subtotal %>
          	</form>
-        	<form action="NuevaCompra" method="POST"> 
-            <button type="submit" > Seguir Comprando </button>
-            </form>
-			</form>
-        	<form action="FinalizarCompra" method="POST"> 
-            <button type="submit" > Confirmar </button>
-            </form>
-            </form>
-        	<form action="EliminarLineaVenta" method="POST"> 
-            <button type="submit" > Eliminar producto </button>
-            </form>
+        		<form action="NuevaCompra" method="GET"> 
+            		<button type="submit" > Seguir Comprando </button>
+            	</form>
+
+        		<form action="FinalizarCompra" method="POST"> 
+            		<button type="submit" > Confirmar </button>
+            	</form>
+            <% } else { %>
+            <p> CARRITO VACIO </p>
+            <% } %>
             
             <a href="index.jsp">Volver a Inicio</a>
 	</body>

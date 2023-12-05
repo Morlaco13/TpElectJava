@@ -35,12 +35,14 @@ public class BuscarTodosPorCategoria extends HttpServlet {
 		ControladorCategoria cc = new ControladorCategoria();
 		c = cc.getById(c);
 		p.setCat(c);
+		int cat = p.getCat().getIdCategoria();
 		
 		ControladorProducto cp = new ControladorProducto();
 		prods = cp.getByCategoria(c);
 		
 		HttpSession misession = request.getSession();
 		misession.setAttribute("prods", prods);
+		misession.setAttribute("categoria", cat);
 		
 		request.getRequestDispatcher("ProductosPorCategoria.jsp").forward(request, response);
 	}
