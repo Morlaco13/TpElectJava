@@ -182,8 +182,8 @@ public class DatosPersona {
 		
 		try {
 			stmt = Conexion.getInstancia().getConnection().prepareStatement(
-					"insert into persona(nombre, apellido, dni, telefono, direccion, email, esAdmin) "
-					+ "values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+					"insert into persona(nombre, apellido, dni, telefono, direccion, email, esAdmin, password) "
+					+ "values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			// Si el orden es diferente en la bd, no importa 
 			//roundtriptime ida y vuelta hasta la bd
 			stmt.setString(1, p.getNombre());
@@ -193,6 +193,7 @@ public class DatosPersona {
 			stmt.setString(5, p.getDireccion());
 			stmt.setString(6, p.getEmail());
 			stmt.setBoolean(7, p.isEsAdmin());
+			stmt.setString(8, p.getPassword());
 		
 			stmt.executeUpdate(); //devuelve la cantidad de filas actualizadas
 			keyRS = stmt.getGeneratedKeys();

@@ -3,6 +3,7 @@ package datos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import entidades.Cliente;
 
@@ -44,5 +45,44 @@ public class DatosCliente {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void alta(Cliente c) {
+		PreparedStatement stmt = null;
+		ResultSet keyRS = null;
+		
+		try {
+			stmt = Conexion.getInstancia().getConnection().prepareStatement(
+					"insert into persona(nombre, apellido, dni, telefono, direccion, email, esAdmin, password) "
+					+ "values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			// Si el orden es diferente en la bd, no importa 
+			//roundtriptime ida y vuelta hasta la bd
+			stmt.setString(1, c.getNombre());
+			stmt.setString(2, c.getApellido());
+			stmt.setInt(3, c.getDni());
+			stmt.setInt(4, c.getTelefono());
+			stmt.setString(5, c.getDireccion());
+			stmt.setString(6, c.getEmail());
+			stmt.setBoolean(7, c.isEsAdmin());
+			stmt.setString(8, c.getPassword());
+		
+			stmt.executeUpdate(); //devuelve la cantidad de filas actualizadas
+			keyRS = stmt.getGeneratedKeys();
+			
+			if(keyRS != null && keyRS.next()) {
+				c.setIdPersona(keyRS.getInt(1));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();				
+		} finally {
+			try {
+				if (keyRS != null) keyRS.close();
+				if (stmt != null) stmt.close();
+				Conexion.getInstancia().releaseConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
 	}	
 }

@@ -17,6 +17,10 @@
 		<form action="InicioSesionServlet" method="get">
 		<button type="submit" > Ingresar </button>
 		</form>
+		
+		<form action="NuevaCuenta" method="get">
+		<button type="submit" > Registrar </button>
+		</form>
 		<% } else { Cliente cli = new Cliente();
 					if (request.getSession().getAttribute("usuario").getClass() == cli.getClass()){
 					Cliente user = (Cliente) request.getSession().getAttribute("usuario");
@@ -69,13 +73,13 @@
 		<form action="FormularioBusquedaPorDniServlet" method="POST">
 		<button type="submit" > Buscar usuario por DNI</button>
 		</form>
-				<% } %>
-		<% }%>
 		
 		<h1> CARRITO </h1>
 		<form action="MostrarCarrito" method="POST">
 		<button type="submit" > CARRITO </button>
 		</form>
+				<% } %>
+		<% }%>
 		
 	</body>
 </html>

@@ -11,4 +11,8 @@ public class ControladorCliente {
 		datos = new DatosCliente();
 		return datos.buscar(c);
 	}
+
+	public void alta(Cliente c) {
+		datos.alta(c);	
+	}
 }
