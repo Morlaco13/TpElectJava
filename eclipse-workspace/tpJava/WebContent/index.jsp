@@ -74,6 +74,18 @@
 		<button type="submit" > Buscar usuario por DNI</button>
 		</form>
 		
+		<h1> MARCAS </h1>
+		
+		<form action="BuscarMarcas" method="GET">
+		<button type="submit" > Mostrar Marcas </button>
+		</form>
+		
+		<h1> CATEGORIAS </h1>
+		
+		<form action="BuscarCategorias" method="GET">
+		<button type="submit" > Mostrar Categorias </button>
+		</form>
+		
 		<h1> CARRITO </h1>
 		<form action="MostrarCarrito" method="POST">
 		<button type="submit" > CARRITO </button>
