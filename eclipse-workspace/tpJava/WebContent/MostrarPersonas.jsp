@@ -11,10 +11,18 @@
 	</head>
 	<body>
 		<h1>Lista de personas</h1>
+		<p>Para Eliminar un usuario completa el campo</p>
+		<form action="EliminarUsuario" method="POST">
+		<p><label> ID: </label> <input type="text" name="id"></p>
+        <button type="submit" > Eliminar Usuario </button></form>
+        
+        <p>---------------------------------</p>
+        
 		<%
 			List<Persona> personas = (List<Persona>) request.getSession().getAttribute("pers");
 			for(Persona p : personas){
 		%>
+		
 			<p>
             	<strong>ID:</strong> <%=p.getIdPersona() %> |
             	<strong>Nombre:</strong> <%=p.getNombre() %> |
@@ -29,13 +37,10 @@
         	<form action="ModificarUsuario" method="POST">
         	<input type="hidden" name="id" value="<%= p.getIdPersona() %>">
         	<button type="submit" > Modificar Usuario </button></form><!-- MANDAMOS ID PARA MAYOR SEGURIDAD -->
-        	
-        	<form action="EliminarUsuario" method="POST">
-        	<input type="hidden" name="id" value="<%= p.getIdPersona() %>">
-        	<button type="submit" > Eliminar Usuario </button></form>
 
 			<p>---------------------------------</p>
 		<% } %>
-		<a href="index.jsp">Volver a Inicio</a>
+    	
+    	<a href="index.jsp">Volver a Inicio</a>
 	</body>
 </html>

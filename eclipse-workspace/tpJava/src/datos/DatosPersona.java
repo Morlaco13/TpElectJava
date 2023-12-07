@@ -220,15 +220,9 @@ public class DatosPersona {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = Conexion.getInstancia().getConnection().prepareStatement("select * from persona where id = ?");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("DELETE from persona where id = ?");
 			
-			stmt.setString(2, p.getNombre());
-			stmt.setString(3, p.getApellido());
-			stmt.setInt(4, p.getDni());
-			stmt.setInt(5, p.getTelefono());
-			stmt.setString(6, p.getDireccion());
-			stmt.setString(7, p.getEmail());
-			stmt.setBoolean(8, p.isEsAdmin());
+			stmt.setInt(1, p.getIdPersona());
 			
 			stmt.executeUpdate(); //mod a los datos
 			
