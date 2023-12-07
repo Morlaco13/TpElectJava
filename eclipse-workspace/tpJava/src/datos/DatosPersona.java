@@ -157,6 +157,7 @@ public class DatosPersona {
 			per.setDireccion(rs.getString("direccion"));
 			per.setEmail(rs.getString("email"));
 			per.setEsAdmin(rs.getBoolean("esAdmin"));
+			per.setPassword(rs.getString("password"));
 			
 			}
 		
@@ -246,9 +247,9 @@ public class DatosPersona {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = Conexion.getInstancia().getConnection().prepareStatement("update persona set nombre = ?, apellido = ?,"
-					+ "dni = ?" + ", telefono = ?, direccion = ?, email = ?,"
-					+ "esAdmin = ? where id = ?");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("update persona set nombre = ?, apellido = ?, "
+					+ "dni = ?, telefono = ?, direccion = ?, email = ?, "
+					+ "esAdmin = ?, password = ? where id = ?");
 			
 			stmt.setString(1, p.getNombre());
 			stmt.setString(2, p.getApellido());
@@ -257,7 +258,8 @@ public class DatosPersona {
 			stmt.setString(5, p.getDireccion());
 			stmt.setString(6, p.getEmail());
 			stmt.setBoolean(7, p.isEsAdmin());
-			stmt.setInt(8, p.getIdPersona());
+			stmt.setString(8, p.getPassword());
+			stmt.setInt(9, p.getIdPersona());
 		
 			stmt.executeUpdate(); //mod a los datos
 			

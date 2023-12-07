@@ -26,6 +26,13 @@
             	<strong>esAdmin:</strong> <%=p.isEsAdmin() %> |
             	<strong>password:</strong> <%=p.getPassword() %> |
         	</p>
+        	<form action="ModificarUsuario" method="POST">
+        	<input type="hidden" name="id" value="<%= p.getIdPersona() %>">
+        	<button type="submit" > Modificar Usuario </button></form><!-- MANDAMOS ID PARA MAYOR SEGURIDAD -->
+        	
+        	<form action="EliminarUsuario" method="POST">
+        	<input type="hidden" name="id" value="<%= p.getIdPersona() %>">
+        	<button type="submit" > Eliminar Usuario </button></form>
 
 			<p>---------------------------------</p>
 		<% } %>
