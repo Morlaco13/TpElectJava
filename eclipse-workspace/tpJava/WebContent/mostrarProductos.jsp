@@ -7,10 +7,29 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Mostrar productos</title>
+    <title>Mostrar productos</title>
+    <style>
+        .form-container {
+            display: inline-block;
+        }
+        
+        form {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
 	</head>
 	<body>
 		<h1>Lista de productos</h1>
+		
+		<div class="form-container">
+			<form action="OrdenarProductoA" method="GET">
+			<button type="submit" > Orden precio ascendente </button>
+			</form>
+			<form action="OrdenarProductoD" method="GET">
+			<button type="submit" > Comprar precio descendente </button>
+			</form>
+		</div>
 		<%
 			List<Producto> listaProductos = (List<Producto>) request.getSession().getAttribute("prods");
 			for(Producto p : listaProductos){
