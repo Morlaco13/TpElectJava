@@ -142,13 +142,13 @@ public class DatosPersona {
 		PreparedStatement stmt = null;
 		
 		try {
-		Persona per = null;
+			Persona per = null;
 		stmt = Conexion.getInstancia().getConnection().prepareStatement("select * from persona where id = ?");
 		stmt.setInt(1, p.getIdPersona()); // Asigno al 1er ? el valor (no arranca en 0)
 		rs = stmt.executeQuery();
 		
 		if (rs != null && rs.next()) {
-			per = new Persona(); //Creo per aca porque sino encuentra debe devolver null
+			per = new Persona();
 			per.setIdPersona(rs.getInt("id"));
 			per.setNombre(rs.getString("nombre"));
 			per.setApellido(rs.getString("apellido"));
@@ -160,7 +160,7 @@ public class DatosPersona {
 			per.setPassword(rs.getString("password"));
 			
 			}
-		
+
 		return per;
 		
 		} catch (SQLException e) {

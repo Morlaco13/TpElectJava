@@ -8,6 +8,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title> E-shop </title>
+	<style>
+        .form-container {
+            display: inline-block;
+        }
+        
+        form {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
 	</head>
 	<body>
 		<h1> Bienvenidos E-Shop </h1>
@@ -26,6 +36,18 @@
 					Cliente user = (Cliente) request.getSession().getAttribute("usuario");
 					%>
 					<h1>Bienvenido <%=user.getNombre() + " " %><%=user.getApellido()%></h1>
+					
+					<<div class="form-container">
+						<form action="Perfil" method="GET">
+						<input type="hidden" name="idPersona" value="<%=user.getIdPersona()%>">
+						<button type="submit" > Perfil </button>
+						</form>
+						<form action="Historial" method="POST">
+						<input type="hidden" name="idPersona" value="<%=user.getIdPersona()%>">
+						<button type="submit" > Historial </button>
+						</form>
+					</div>
+					
 					<h1> COMPRA </h1>
 					<form action="NuevaCompra" method="GET">
 					<button type="submit" > Comprar productos</button>
@@ -40,6 +62,18 @@
 					Administrador user = (Administrador) request.getSession().getAttribute("usuario");
 					%>
 					<h1>Bienvenido Admin <%=user.getNombre() + " " %><%=user.getApellido()%></h1>
+					
+					<div class="form-container">
+						<form action="Perfil" method="GET">
+						<input type="hidden" name="idPersona" value="<%=user.getIdPersona()%>">
+						<button type="submit" > Perfil </button>
+						</form>
+						<form action="Historial" method="POST">
+						<input type="hidden" name="idPersona" value="<%=user.getIdPersona()%>">
+						<button type="submit" > Historial </button>
+						</form>
+					</div>
+					
 					<h1> COMPRA </h1>
 		<form action="NuevaCompra" method="GET">
 		<button type="submit" > Comprar productos</button>

@@ -11,15 +11,15 @@
 	<body>
 		<%	Persona p = (Persona) request.getSession().getAttribute("p");	%>
 	
-		<p>id: <%=p.getIdPersona() %></p>
-		<p>Nombre: <%=p.getNombre() %></p>
-		<p>Apellido: <%=p.getApellido() %></p>
-		<p>Dni: <%=p.getDni() %></p>
-		<p>Telefono: <%=p.getTelefono() %></p>
-		<p>Direccion: <%=p.getDireccion() %></p>
-		<p>Email: <%=p.getEmail() %></p>
-		<p>EsAdmin: <%=p.isEsAdmin() %></p>
-		<p>password: <%=p.getPassword() %></p>
+		<p><strong>id: </strong><%=p.getIdPersona() %></p>
+		<p><strong>Nombre: </strong><%=p.getNombre() %></p>
+		<p><strong>Apellido: </strong><%=p.getApellido() %></p>
+		<p><strong>Dni: </strong><%=p.getDni() %></p>
+		<p><strong>Telefono: </strong><%=p.getTelefono() %></p>
+		<p><strong>Direccion: </strong><%=p.getDireccion() %></p>
+		<p><strong>Email: </strong><%=p.getEmail() %></p>
+		<p><strong>EsAdmin: </strong><%=p.isEsAdmin() %></p>
+		<p><strong>password: </strong><%=p.getPassword() %></p>
 		
 		<p>---------------------------------</p>
 
