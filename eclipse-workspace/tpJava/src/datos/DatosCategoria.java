@@ -120,7 +120,7 @@ public class DatosCategoria {
 		try {
 			stmt = Conexion.getInstancia().getConnection().prepareStatement("DELETE from categoria where idCategoria = ?");
 			
-			stmt.setString(1, c.getNombre());
+			stmt.setInt(1, c.getIdCategoria());
 			
 			stmt.executeUpdate(); //mod a los datos
 			

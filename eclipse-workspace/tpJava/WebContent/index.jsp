@@ -37,7 +37,7 @@
 					%>
 					<h1>Bienvenido <%=user.getNombre() + " " %><%=user.getApellido()%></h1>
 					
-					<<div class="form-container">
+					<div class="form-container">
 						<form action="Perfil" method="GET">
 						<input type="hidden" name="idPersona" value="<%=user.getIdPersona()%>">
 						<button type="submit" > Perfil </button>
@@ -110,21 +110,32 @@
 		
 		<h1> MARCAS </h1>
 		
-		<form action="BuscarMarcas" method="GET">
-		<button type="submit" > Mostrar Marcas </button>
-		</form>
+		<div class="form-container">
+			<form action="BuscarMarcas" method="GET">
+			<button type="submit" > Mostrar Marcas </button>
+			</form>
+			<form action="AltaMarca" method="POST">
+			<button type="submit" > Nueva Marca </button>
+			</form>
+		</div>
 		
 		<h1> CATEGORIAS </h1>
 		
-		<form action="BuscarCategorias" method="GET">
-		<button type="submit" > Mostrar Categorias </button>
-		</form>
+		<div class="form-container">
+			<form action="BuscarCategorias" method="GET">
+			<button type="submit" > Mostrar Categorias </button>
+			</form>
+			<form action="AltaCategoria" method="POST">
+			<button type="submit" > Nueva Categoria </button>
+			</form>
+		</div>
 		
+		<% } %>
+				
 		<h1> CARRITO </h1>
 		<form action="MostrarCarrito" method="POST">
 		<button type="submit" > CARRITO </button>
 		</form>
-				<% } %>
 		<% }%>
 		
 	</body>

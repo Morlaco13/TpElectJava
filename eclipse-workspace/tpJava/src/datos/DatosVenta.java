@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import entidades.Categoria;
 import entidades.LineaVenta;
 import entidades.Marca;
+import entidades.Persona;
 import entidades.Producto;
 import entidades.Venta;
 import logic.ControladorPersona;
@@ -90,5 +92,60 @@ public class DatosVenta {
 			  }	 
 		}
 		return v; //TUVIMOS QUE PONERLO ACA PORQUE NO FUNCIONABA SINO Y NO PUDIMOS SOLUCIONARLO
+	}
+
+	public ArrayList<Venta> getHistIdPersona(int id) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		ControladorPersona cp = new ControladorPersona();
+		Persona p = new Persona();
+		Producto prod = new Producto();
+
+		try {
+			ArrayList<Venta> historialVenta = new ArrayList();
+			PreparedStatement pstmt = Conexion.getInstancia().getConnection().prepareStatement(
+			            "SELECT v.* FROM venta v JOIN persona p ON v.cli = p.id "
+			            + " JOIN lineaventa lv ON v.idventa = lv.idventa WHERE p.id = ?");
+			pstmt.setInt(1, id);
+
+			while(rs != null && rs.next()) {
+				Venta v = new Venta();
+
+				v.setIdVenta(rs.getInt("idVenta"));
+				v.setFechaVenta(rs.getDate("fechaVenta"));
+				p.setIdPersona(rs.getInt("id"));
+				v.setPer(p);
+				
+				ArrayList<LineaVenta> lineaVentas = new ArrayList<>();
+				
+			do {
+				LineaVenta lv = new LineaVenta();				
+				lv.setIdVenta(rs.getInt("lv.idVenta"));
+				prod.setIdProducto(rs.getInt("lv.idProducto"));
+				lv.setProd(prod);
+				lv.setCant(rs.getInt("lv.cantidad"));
+				lv.setPrecioUnit(rs.getInt("lv.precioUnitario"));
+				
+				lineaVentas.add(lv);
+				
+			} while (rs.next());
+			
+		historialVenta.add(v);
+		}
+
+		return historialVenta;
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) stmt.close();
+				Conexion.getInstancia().releaseConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

@@ -118,7 +118,7 @@ public class DatosMarca {
 		try {
 			stmt = Conexion.getInstancia().getConnection().prepareStatement("DELETE from marca where idMarca = ?");
 			
-			stmt.setString(1, m.getNombre());
+			stmt.setInt(1, m.getIdMarca());
 			
 			stmt.executeUpdate(); //mod a los datos
 			
