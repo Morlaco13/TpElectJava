@@ -139,9 +139,9 @@ public class DatosCategoria {
 	
 	public void update(Categoria c) {
 		PreparedStatement stmt = null;
-		  		
+
 		try {
-			stmt = Conexion.getInstancia().getConnection().prepareStatement("update categoria set nombreCat = ? where idCategoria = ?");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("UPDATE categoria SET nombreCat = ? WHERE idCategoria = ?");
 			
 			stmt.setString(1, c.getNombre());
 			stmt.setInt(2, c.getIdCategoria());

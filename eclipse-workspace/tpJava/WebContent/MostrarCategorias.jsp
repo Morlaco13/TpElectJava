@@ -9,13 +9,14 @@
 		<title> Categorias </title>
 	</head>
 	<body>
+		<h1> CATEGORIAS </h1>
 		<% LinkedList<Categoria> categorias = (LinkedList) request.getSession().getAttribute("categorias"); %>
 		<% for ( Categoria c : categorias) { %>
 			<p>
 				<strong> id: </strong><%=c.getIdCategoria() %> |
 				<strong> Nombre: </strong><%=c.getNombre() %> |
 				<div class="form-container" style="display: inline-block;"> <!-- NO SE ALINEAN HORIZONTALMENTE -->
-					<form action="ModificarCategoria" method="GET" style="display: inline-block;">
+					<form action="FormularioModificarCategoria" method="GET" style="display: inline-block;">
 					<input type="hidden" name="idCategoria" value="<%=c.getIdCategoria()%>">
 					<button type="submit" > Modificar </button>
 					</form>

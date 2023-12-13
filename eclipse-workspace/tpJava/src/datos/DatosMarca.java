@@ -139,7 +139,7 @@ public class DatosMarca {
 		PreparedStatement stmt = null;
 		  		
 		try {
-			stmt = Conexion.getInstancia().getConnection().prepareStatement("update marca set nombreMarca = ?, where idMarca = ?");
+			stmt = Conexion.getInstancia().getConnection().prepareStatement("UPDATE marca SET nombreMarca = ? WHERE idMarca = ?");
 			
 			stmt.setString(1, m.getNombre());
 			stmt.setInt(2, m.getIdMarca());

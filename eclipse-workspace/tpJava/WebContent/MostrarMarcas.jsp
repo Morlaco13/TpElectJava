@@ -25,7 +25,7 @@
 				<strong> id: </strong><%=m.getIdMarca() %> |
 				<strong> Nombre: </strong><%=m.getNombre() %> |
 				<div class="form-container" style="display: inline-block;"> <!-- NO SE ALINEAN HORIZONTALMENTE -->
-					<form action="ModificarMarca" method="GET" style="display: inline-block;">
+					<form action="FormularioModificarMarca" method="GET" style="display: inline-block;">
 					<input type="hidden" name="idMarca" value="<%=m.getIdMarca()%>">
 					<button type="submit" > Modificar </button>
 					</form>
