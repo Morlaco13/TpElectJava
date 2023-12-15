@@ -10,7 +10,7 @@
 		<title>Producto encontrado</title>
 	</head>
 	<body>
-		<%	Producto p = (Producto) request.getSession().getAttribute("p");
+		<%	Producto p = (Producto) request.getSession().getAttribute("prod");
 			LineaVenta nuevaLineaVenta = (LineaVenta) request.getSession().getAttribute("nuevaLineaVenta");
 			
 			if (nuevaLineaVenta != null) {

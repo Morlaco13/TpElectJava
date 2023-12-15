@@ -18,10 +18,13 @@
 		<h2>Detalles de la compra:</h2>
 		<p>
 		<strong>Numero de compra:</strong><%=v.getIdVenta() %>
+		<strong>Fecha: </strong><%=v.getFechaVenta() %></p>
+		<p> </p>
+		<p>
 		<strong>A nombre de:</strong><%=v.getPer().getNombre() + " " + v.getPer().getApellido() %>
 		<strong>Direccion: </strong><%=v.getPer().getDireccion() %>
-		<strong>Fecha: </strong><%=v.getFechaVenta() %>
 		</p>
+		<p><strong>PRODUCTOS: </strong></p>
 			
 		<%	
 			for(LineaVenta lv : lineaVenta) {
@@ -38,6 +41,11 @@
          <% } %>
 			
 			<p><strong>TOTAL de compra: </strong></p><%=subtotal %>
+			
+			<% HttpSession misession = request.getSession();
+			v = null;
+				misession.setAttribute("venta", v);
+			%> <!-- UNICA FORMA DE LIMPIAR EL CARRITO QUE CONSEGUIMOS -->
 			
 			<form action="NuevaCompra" method="GET">
             <button type="submit" > Seguir Comprando </button>

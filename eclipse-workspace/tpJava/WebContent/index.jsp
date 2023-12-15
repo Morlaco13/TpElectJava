@@ -114,7 +114,7 @@
 			<form action="BuscarMarcas" method="GET">
 			<button type="submit" > Mostrar Marcas </button>
 			</form>
-			<form action="AltaMarca" method="POST">
+			<form action="FormularioAltaMarca" method="POST">
 			<button type="submit" > Nueva Marca </button>
 			</form>
 		</div>
@@ -125,7 +125,7 @@
 			<form action="BuscarCategorias" method="GET">
 			<button type="submit" > Mostrar Categorias </button>
 			</form>
-			<form action="AltaCategoria" method="POST">
+			<form action="FormularioAltaCategoria" method="POST">
 			<button type="submit" > Nueva Categoria </button>
 			</form>
 		</div>

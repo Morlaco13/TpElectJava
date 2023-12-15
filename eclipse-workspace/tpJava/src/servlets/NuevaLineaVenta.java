@@ -31,17 +31,18 @@ public class NuevaLineaVenta extends HttpServlet {
 	    int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 	    
 	    LineaVenta nuevaLineaVenta = new LineaVenta();
-	    Producto p = new Producto();
-	    p.setIdProducto(idProducto);
+	    Producto prod = new Producto();
+	    prod.setIdProducto(idProducto);
 	    ControladorProducto cp = new ControladorProducto();
-	    p = cp.buscar(p); // Busco el producto
+	    prod = cp.buscar(prod); // Busco el producto
 	    
-	    nuevaLineaVenta.setProd(p);  //Lo guardo en la nuevalineaVenta
+	    nuevaLineaVenta.setProd(prod);  //Lo guardo en la nuevalineaVenta
 	    nuevaLineaVenta.setCant(cantidad); //Asigno cantidad
 	    
 	    // Almacenar en sesion nuevaLineaVenta
 	    HttpSession session = request.getSession();
 	    session.setAttribute("nuevaLineaVenta", nuevaLineaVenta);
+	    session.setAttribute("prod", prod);
 	    
 	    // Voy a viewProductos
 	    response.sendRedirect("MostrarProducto.jsp");
